@@ -1,9 +1,6 @@
-title: XUJINKAI
 domain: https://xujinkai.net
 
 # Conversion
-markdown: kramdown
-highlighter: rouge
 exclude: ["*.lnk", "*.bat", "README.md", "Gemfile*"]
 
 # Outputting
@@ -11,4 +8,3 @@ exclude: ["*.lnk", "*.bat", "README.md", "Gemfile*"]
 # or post would missing after upload
 permalink: /posts/:title
 timezone: Europe/Amsterdam
-plugins:

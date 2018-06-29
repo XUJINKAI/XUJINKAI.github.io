@@ -3,15 +3,17 @@ layout: null
 ---
 <html>
 <head>
-	<link rel="canonical" href="https://xujinkai.net"/>
+	<link rel="canonical" href="{{site.domain}}"/>
 	<title>XUJINKAI</title>
 </head>
 <body>
 	<h1>
-		<a href="https://xujinkai.net">XUJINKAI.net</a>
+		<a href="{{site.domain}}">{{site.domain}}</a>
 	</h1>
 <script>
-// location = "https://xujinkai.net";
+setTimeout(function(){
+	location = "{{site.domain}}"; 
+}, 3000);
 </script>
 </body>
 </html>

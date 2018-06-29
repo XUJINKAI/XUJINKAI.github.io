@@ -4,10 +4,8 @@ description: XUJINKAI个人主页
 domain: https://xujinkai.net
 
 # Conversion
-markdown: kramdown
-kramdown:
-  syntax_highlighter: rouge
 highlighter: rouge
+markdown: kramdown
 excerpt_separator: <!--more-->
 exclude: ["*.lnk", "*.bat", "README.md"]
 
@@ -19,4 +17,3 @@ timezone: Europe/Amsterdam
 plugins:
   - jekyll-sitemap
   - jekyll-feed
-  

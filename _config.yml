@@ -4,8 +4,11 @@ description: XUJINKAI个人主页
 domain: https://xujinkai.net
 
 # Conversion
-highlighter: rouge
 markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+# highlighter: rouge
 excerpt_separator: <!--more-->
 exclude: ["*.lnk", "*.bat", "README.md"]
 

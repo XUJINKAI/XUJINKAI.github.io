@@ -45,13 +45,13 @@ UseShellExecute = false；CreateNoWindow = true 时，控制台窗口不会显�
 
 ## Admin身份运行
 
-```C#
+```csharp
 ProcessStartInfo.Verb = "RunAs";
 ```
 
 ## 在Admin进程中，以普通权限运行
 
-```C#
+```csharp
 ProcessStartInfo.FileName = "RunAs";
 ProcessStartInfo.Arguments = $"/trustlevel:0x20000 {YOUR_COMMAND}";
 ```
@@ -60,7 +60,7 @@ ProcessStartInfo.Arguments = $"/trustlevel:0x20000 {YOUR_COMMAND}";
 
 ## 在CMD中运行命令
 
-```C#
+```csharp
 ProcessStartInfo.FileName = "cmd";
 ProcessStartInfo.Arguments = $"/c {YOUR_COMMAND}";
 ```
@@ -71,7 +71,7 @@ ProcessStartInfo.Arguments = $"/c {YOUR_COMMAND}";
 
 PATH为文件时：
 
-```C#
+```csharp
 ProcessStartInfo.FileName = "explorer";
 ProcessStartInfo.Arguments = $"/select, {PATH}";
 ```
@@ -84,7 +84,7 @@ PATH为目录时 `ProcessStartInfo.Arguments = PATH;`即可。
 
 对常见的调用方式做了包装，Demo如下：
 
-```C#
+```csharp
 ProcessInfoChain.New(Command, Args)
                 .SetWindow(WindowType.Maximized)
                 .LaunchBy(LaunchType.CmdStart)
@@ -96,7 +96,7 @@ ProcessInfoChain.New(Command, Args)
 
 此外还有一个更简单的包装：
 
-```C#
+```csharp
 Cmd.Explorer("C:\\");
 Cmd.RunSmart("http://xujinkai.net");
 Cmd.RunAsAdmin("cmd", "");

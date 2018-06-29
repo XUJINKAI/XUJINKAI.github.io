@@ -14,12 +14,10 @@ title: 博文列表
 	}
 	#posts-archive-list li {
 		font-size: 18px;
+		margin-bottom: 5px;
 	}
 	#posts-archive-list li .disqus-comment-count{
 		font-size: .8em;
-	}
-	.posts-content {
-		line-height: 1.9;
 	}
 </style>
 <div>
@@ -28,9 +26,9 @@ title: 博文列表
 		{% capture year %} {{ post.date | date: '%Y' }} {% endcapture %}
 		{% capture nyear %} {{ post.next.date | date: '%Y' }} {% endcapture %}
 		{% if year != nyear %}
-	    	<h2>{{ post.date | date: '%Y' }}</h2>
+	    <h2>{{ post.date | date: '%Y' }}</h2>
 	    {% endif %}
-    	<li>
+    	<li tags="{%for tag in post.tags%}{{tag}} {%endfor%}">
     		<span>{{ post.date | date:"%Y-%m-%d" }}</span>
     		<span>&nbsp;&raquo;&nbsp;</span>
     		<a href="{{ post.url }}">

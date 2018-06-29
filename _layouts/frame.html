@@ -40,17 +40,22 @@ img {
 					<li><a href="/">主页</a>
 					<li><a href="/posts/">博文列表</a>
 					<li><a href="/tags">Tags</a>
-					<li><a href="/admin">管理</a>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" id="navbar-content-right">
+					<li><a href="https://github.com/XUJINKAI/XUJINKAI.github.io/blob/master/{{page.path}}" target="_blank">View on Github</a>
+					<li><a href="/admin" target="_blank">Admin</a>
 				</ul>
 			</div>
 		</nav>
 		<div id="frame-content" class="row" style="margin: auto;">
 			{{ content }}
+<hr>
 
 {%if page.comment %}
 {% include comments.html %}
 {% endif %}
 
+<br>
 		</div>
 	</div>
 

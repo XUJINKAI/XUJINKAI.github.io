@@ -5,6 +5,8 @@ domain: https://xujinkai.net
 
 # Conversion
 markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
 highlighter: rouge
 excerpt_separator: <!--more-->
 exclude: ["*.lnk", "*.bat", "README.md"]

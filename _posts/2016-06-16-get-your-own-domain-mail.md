@@ -1,8 +1,6 @@
 ---
 layout: post
-published: true
 comment: true
-sticky: false
 permalink: 
 title: 打造个性域名邮箱的几个方案
 tags: 域名 邮箱

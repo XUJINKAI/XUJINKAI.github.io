@@ -1,10 +1,12 @@
 <style>
-
 .avatar {
   max-height: 100px;
 }
-.project a {
+a.hover-under-line{
 	text-decoration: none;
+}
+a.hover-under-line:hover{
+	text-decoration: underline;
 }
 .project {
   margin-top: .5em;
@@ -21,16 +23,13 @@
 }
 </style>
 
-<br>
-<br>
-
 <img class="avatar" src="/img/jk.png">
 
 <p>XUJINKAI</p>
 <p>程序员一枚</p>
 
 <div class="project">
-<a class="project-title" href="http://onequick.org/" target="_blank">OneQuick<span style="font-size: .8em; color: gray;">.org</span></a>
+<a class="project-title hover-under-line" href="http://onequick.org/" target="_blank">OneQuick<span style="font-size: .8em; color: gray;">.org</span></a>
 <div class="project-desc">
 Windows热键工具，简化操作，提高效率，自定义功能丰富。<br>
 已上架微软应用商店，强烈推荐👍
@@ -41,13 +40,22 @@ Windows热键工具，简化操作，提高效率，自定义功能丰富。<br>
 </div>
 
 <div class="project">
-<a class="project-title" href="https://hub.docker.com/r/xujinkai/aria2-with-webui/" target="_blank">Aria2-with-webui (docker)</a>
+<a class="project-title hover-under-line" href="https://github.com/XUJINKAI/XJKdotNetLibrary" target="_blank">XJK.net Library</a>
+<div class="project-desc">
+自用.net standard/.net framework库<br>
+各种常见方法封装
+<br>
+</div>
+</div>
+
+<div class="project">
+<a class="project-title hover-under-line" href="https://hub.docker.com/r/xujinkai/aria2-with-webui/" target="_blank">Aria2-with-webui (docker)</a>
 <div class="project-desc">
 下载神器，集成界面，一行命令安装。
 </div>
 </div>
 
-<p><a href="/projects" style="color: #0366d6; text-decoration: none;">>> 查看全部项目...</a></p>
+<p><a href="/projects" class="hover-under-line" style="color: #0366d6;">>> 查看全部项目...</a></p>
 
 <br>
 <br>

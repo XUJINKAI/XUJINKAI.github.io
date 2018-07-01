@@ -1,8 +1,6 @@
 ---
 layout: post
-published: true
 comment: true
-sticky: false
 permalink: 
 title: 下载神器aria2及其Docker镜像制作
 tags: docker

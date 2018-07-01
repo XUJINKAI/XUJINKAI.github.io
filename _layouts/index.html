@@ -43,11 +43,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   anchors.options = {
     placement: 'left',
   };
-  anchors.add(".article-content h1");
-  anchors.add(".article-content h2");
-  anchors.add(".article-content h3");
-  anchors.add(".article-content h4");
-  anchors.add(".article-content h5");
+  anchors.add(".article-content h1, .article-content h2, .article-content h3, .article-content h4, .article-content h5");
 });
   </script>
   {% endif %}
@@ -59,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   {% endfor %}
   <style>
 html {
-  border-radius: 0 !important;
+  /*border-radius: 0 !important;*/
     /*overflow-y:scroll;*/
 }
 body {
@@ -68,6 +64,25 @@ body {
 img {
   max-width: 100%;
   max-height: 1024px;
+}
+#search-box{
+	margin-left: 0;
+    font-size: 16px;
+    line-height: 20px;
+    border-radius: 1em;
+    border: 1px solid white;
+    background: white;
+}
+#search-icon{
+	position: relative;
+	right: -10px;
+    color: #00000085;
+}
+#search-input:focus,
+#search-input{
+	border: none;
+	outline: 0;
+    padding: 5px 10px 5px 12px;
 }
   </style>
   <script>
@@ -98,7 +113,7 @@ function search(){
 {%if drawer == true %}mdui-drawer-body-left{%endif%}">
   <div class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-toolbar-hide" style="
   z-index: 6000;"><!-- 覆盖抽屉栏 -->
-    <div class="mdui-toolbar mdui-color-theme">
+    <div class="mdui-toolbar mdui-color-theme" style="color: white !important;">
       <span class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#main-drawer', swipe: true}">
         <i class="mdui-icon material-icons">menu</i>
       </span>
@@ -106,9 +121,10 @@ function search(){
         <span class="mdui-typo-title mdui-hidden-xs">XUJINKAI</span>
       </a>
       <div class="mdui-toolbar-spacer"></div>
-      <input class="mdui-typo-title" style="max-width: 25em; font-size: 16px; line-height: 20px;" id="search-box" placeholder="搜索 XUJINKAI.net">
-      <a href="javascript: search();">
-      <i class="mdui-icon material-icons mdui-hidden-xs">search</i>
+      <div id="search-box" class="mdui-typo-title">
+	      <i id="search-icon" class="mdui-icon material-icons">search</i>
+	      <input id="search-input" placeholder="XUJINKAI.net">
+      </div>
     </div>
   </div>
 
@@ -130,37 +146,32 @@ function search(){
           <i class="mdui-list-item-icon mdui-icon material-icons">assistant_photo</i>
           <div class="mdui-list-item-content">个人项目</div>
       </a>
-      <a class="mdui-list-item mdui-ripple" href="/contact">
-          <i class="mdui-list-item-icon mdui-icon material-icons">person</i>
-          <div class="mdui-list-item-content">联系方式</div>
-      </a>
       <a class="mdui-list-item mdui-ripple" href="/donate">
           <i class="mdui-list-item-icon mdui-icon material-icons">tag_faces</i>
           <div class="mdui-list-item-content">捐赠</div>
       </a>
-      <a class="mdui-list-item mdui-ripple" href="https://wiki.xujinkai.net" target="_blank">
-          <i class="mdui-list-item-icon mdui-icon material-icons">bookmark</i>
-          <div class="mdui-list-item-content">Wiki</div>
-          <i class="mdui-icon material-icons">open_in_new</i>
+      <a class="mdui-list-item mdui-ripple" href="/about">
+          <i class="mdui-list-item-icon mdui-icon material-icons">person</i>
+          <div class="mdui-list-item-content">关于</div>
       </a>
 
       <li class="mdui-subheader">Site</li>
+      <a class="mdui-list-item mdui-ripple" href="https://wiki.xujinkai.net" target="_blank">
+          <i class="mdui-list-item-icon mdui-icon material-icons">bookmark</i>
+          <div class="mdui-list-item-content">个人Wiki</div>
+      </a>
       <a class="mdui-list-item mdui-ripple" href="https://github.com/XUJINKAI/XUJINKAI.github.io/blob/master/{{page.path}}" target="_blank">
-          <i class="mdui-list-item-icon mdui-icon material-icons">open_in_browser</i>
-          <div class="mdui-list-item-content">View on GitHub</div>
-          <i class="mdui-icon material-icons">open_in_new</i>
+	     <svg version="1.1" x="0px" y="0px" viewBox="0 0 36 36" enable-background="new 0 0 36 36" xml:space="preserve" class="mdui-list-item-icon mdui-icon" style="width: 24px;height:24px;">
+	        <path fill-rule="evenodd" clip-rule="evenodd" fill="rgba(0,0,0,0.87)" d="M18,1.4C9,1.4,1.7,8.7,1.7,17.7c0,7.2,4.7,13.3,11.1,15.5
+			c0.8,0.1,1.1-0.4,1.1-0.8c0-0.4,0-1.4,0-2.8c-4.5,1-5.5-2.2-5.5-2.2c-0.7-1.9-1.8-2.4-1.8-2.4c-1.5-1,0.1-1,0.1-1
+			c1.6,0.1,2.5,1.7,2.5,1.7c1.5,2.5,3.8,1.8,4.7,1.4c0.1-1.1,0.6-1.8,1-2.2c-3.6-0.4-7.4-1.8-7.4-8.1c0-1.8,0.6-3.2,1.7-4.4
+			c-0.2-0.4-0.7-2.1,0.2-4.3c0,0,1.4-0.4,4.5,1.7c1.3-0.4,2.7-0.5,4.1-0.5c1.4,0,2.8,0.2,4.1,0.5c3.1-2.1,4.5-1.7,4.5-1.7
+			c0.9,2.2,0.3,3.9,0.2,4.3c1,1.1,1.7,2.6,1.7,4.4c0,6.3-3.8,7.6-7.4,8c0.6,0.5,1.1,1.5,1.1,3c0,2.2,0,3.9,0,4.5
+			c0,0.4,0.3,0.9,1.1,0.8c6.5-2.2,11.1-8.3,11.1-15.5C34.3,8.7,27,1.4,18,1.4z"></path>
+		  </svg>
+        <div class="mdui-list-item-content">GitHub</div>
       </a>
-      <a class="mdui-list-item mdui-ripple" href="/feed.xml">
-          <i class="mdui-list-item-icon mdui-icon material-icons">rss_feed</i>
-          <div class="mdui-list-item-content">RSS</div>
-      </a>
-      <a class="mdui-list-item mdui-ripple" href="/sitemap.xml">
-          <i class="mdui-list-item-icon"></i>
-          <div class="mdui-list-item-content">Sitemap</div>
-      </a>
-
-      <li class="mdui-subheader">Manage</li>
-      <a class="mdui-list-item mdui-ripple" href="/admin">
+      <a class="mdui-list-item mdui-ripple" href="/admin" target="_blank">
           <i class="mdui-list-item-icon mdui-icon material-icons">build</i>
           <div class="mdui-list-item-content">Admin</div>
       </a>
@@ -178,7 +189,7 @@ function search(){
     margin-top: 0 !important;
 }
 </style>
-  <div class="mdui-container">
+  <div class="mdui-container main-container">
     <div class="mdui-col-md-3">
         {% if page.sidebar == 'bio' or layout.sidebar == 'bio' %}
         {% include bio.html %}

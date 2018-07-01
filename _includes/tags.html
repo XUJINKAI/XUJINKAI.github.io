@@ -7,18 +7,24 @@
 }
 ul#tags-list{
   list-style: none;
+  padding: 0;
 }
 ul#tags-list li {
   margin: 8px 0;
-  font-size: 1.0em;
+  font-size: 1.05em;
+}
+@media(max-width: 1024px){
+  ul#tags-list li {
+    display: inline;
+    margin-right: 1em;
+    font-size: 1.2em;
+  }
 }
 ul#tags-list li a {
   text-decoration: none;
   color: #0366d6;
 }
 </style>
-<br>
-<br>
 <ul id="tags-list">
   <li><a id="all-tags" href="javascript:posts_show_all();">All</a></li>
 </ul>

@@ -1,8 +1,6 @@
 ---
 layout: post
-published: true
 comment: true
-sticky: true
 permalink: 
 title: 自动创建post文件的脚本
 tags: jekyll bat

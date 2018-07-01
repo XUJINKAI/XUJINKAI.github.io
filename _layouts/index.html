@@ -36,6 +36,17 @@
   {% assign markdown = true %}
   <link href="/css/rouge-monokai.css" rel="stylesheet"/>
   <link href="/css/github-markdown.css" rel="stylesheet"/>
+  <script src="/js/anchor.min.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", function(event) {
+  anchors.options = {
+    placement: 'left',
+  };
+  anchors.add(".markdown-body h1");
+  anchors.add(".markdown-body h2");
+  anchors.add(".markdown-body h3");
+});
+  </script>
   {% endif %}
   {% if com == "mdui" %}
   <!-- https://www.mdui.org/docs/ -->

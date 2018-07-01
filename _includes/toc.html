@@ -17,19 +17,19 @@
 
 <div class="next-previous">
     {%if page.next%}
-    <a href="{{page.next.url}}" class="mdui-btn mdui-btn-raised">
+    <a href="{{page.next.url}}" class="mdui-btn mdui-btn-raised mdui-center mdui-valign mdui-color-grey-50">
       新: {{page.next.title}}
     </a>
     {% else %}
-    <span class="mdui-btn">无</span>
+    <span class="mdui-btn mdui-center mdui-valign">无</span>
     {%endif%}
     <br>
     {%if page.previous%}
-    <a href="{{page.previous.url}}" class="mdui-btn mdui-btn-raised">
+    <a href="{{page.previous.url}}" class="mdui-btn mdui-btn-raised mdui-center mdui-valign mdui-color-grey-50">
       旧: {{page.previous.title}}
     </a>
     {% else %}
-    <span class="mdui-btn">无</span>
+    <span class="mdui-btn mdui-center mdui-valign">无</span>
     {%endif%}
 </div>
 

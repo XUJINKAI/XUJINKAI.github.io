@@ -1,11 +1,13 @@
 ---
 layout: index
 title: 主页
-component:
-  - markdown
+component: markdown
 sidebar: bio
 ---
 <style type="text/css">
+.markdown-body a {
+	font-weight: 400;
+}
 </style>
 
 <div>
@@ -15,5 +17,5 @@ sidebar: bio
   <p>{{post.excerpt | strip_html | truncate: 140}}</p>
   {% endfor %}
 
-  <h2><a href="/posts">>>查看全部博文...</a></h2>
+  <h2><a href="/posts" style="">>> 查看全部博文...</a></h2>
 </div>

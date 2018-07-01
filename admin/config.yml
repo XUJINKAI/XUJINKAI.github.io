@@ -20,7 +20,7 @@ collections: # A list of collections the CMS should be able to edit
     fields: # The fields each document in this collection have
       - {label: "Permalink", name: "permalink", widget: "string", default: "/posts/new", required: true}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
-      - {label: "Tags", name: "tags", widget: "list", required: true}
+      - {label: "Tags", name: "tags", widget: "string", required: true}
       - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD HH:mm:ss Z"}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Comment", name: "comment", widget: "boolean", default: true}
@@ -41,4 +41,4 @@ collections: # A list of collections the CMS should be able to edit
       - {label: "DrawerClose", name: "drawer-close", widget: "boolean", default: false}
       - {label: "SideBar", name: "sidebar", widget: "select", options: ["null", "bio", "toc"], default: "null"}
       - {label: "Layout", name: "layout", widget: "select", options: ["null", "index", "post"], default: "index"}
-      - {label: "Component", name: "component", widget: "list", default: []}
+      - {label: "Component", name: "component", widget: "string", default: ""}

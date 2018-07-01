@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
   <link rel="shortcut icon" type="image/x-ico" href="/favicon.ico"/>
+  <link rel="canonical" href="{{site.domain}}{{page.url}}">
   <meta name="author" content="{{site.author}}" />
   <title>{{ page.title }} - XUJINKAI</title>
   {% assign this_components = 'mdui jquery' | split: ' ' %}
@@ -42,9 +43,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
   anchors.options = {
     placement: 'left',
   };
-  anchors.add(".markdown-body h1");
-  anchors.add(".markdown-body h2");
-  anchors.add(".markdown-body h3");
+  anchors.add(".article-content h1");
+  anchors.add(".article-content h2");
+  anchors.add(".article-content h3");
+  anchors.add(".article-content h4");
+  anchors.add(".article-content h5");
 });
   </script>
   {% endif %}

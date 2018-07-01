@@ -12,22 +12,29 @@ drawer-close: true
 .post-content>*:first-child {
     margin-top: 0 !important;
 }
+#title {
+	margin-top: 3em;
+}
+#title a {
+	color: black;
+	font-size: 2em;
+	font-weight: lighter;
+	font-family: sans-serif;
+}
 </style>
 
 <!-- Title -->
-<h2>{{ page.title }}</h2>
+<p id="title"><a href="{{page.url}}">{{ page.title }}</a></p>
 <div class="post-date" style="color: gray;">
-	{{ page.date | date:"%Y-%m-%d" }}
+	<span>{{ page.date | date:"%Y-%m-%d" }}</span>
 </div>
-{% if page.tags.size > 0 %}
 <i>
 Tags: {% for tag in page.tags %}{% if tag != "" %}
 <a href="/posts/#{{tag}}">{{ tag }}</a>
 {% if forloop.index != page.tags.size %}, {% endif %}{% endif %}{% endfor %}
 </i>
-{% endif %}
 <br>
 <br>
-<div id="toc-content" class="post-content" style="padding-bottom: 1px;">
+<div id="toc-content" class="post-content article-content" style="padding-bottom: 1px;">
 {{ content }}
 </div>

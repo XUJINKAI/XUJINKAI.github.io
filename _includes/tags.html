@@ -1,148 +1,99 @@
-<script src="/js/jquery-2.2.2.min.js"></script>
-<script src="/js/blog.js"></script>
-
-<div class="tags" id="tags">
-	<a class="clear" href="javascript:void(0);" onclick="tag_pjax.clear_tags();" style="display: none; float: right; ">clear</a>
-	<h4>
-		<a href='javascript:void(0);' onclick="h4_tags_click();">Tags</a>
-	</h4>
-	<div style="clear: both;" class="tags-content" id="tags-content">
-		{% for tag in site.tags %} 
-			<a href="javascript:void(0);" class='tag' data-tag="{{tag[0]}}">
-				{{tag[0]}}<sup>{{tag[1].size}}</sup>
-			</a>
-		{% endfor %}
-	</div>
-</div>
-
+<style>
+.tag-hide{
+  display: none;
+}
+.tag-active {
+  font-weight: bolder;
+}
+ul#tags-list{
+  list-style: none;
+}
+ul#tags-list li {
+  margin: 8px 0;
+  font-size: 1.0em;
+}
+ul#tags-list li a {
+  text-decoration: none;
+}
+</style>
+<br>
+<br>
+<ul id="tags-list">
+  <li><a id="all-tags" href="javascript:posts_show_all();">All</a></li>
+</ul>
 <script>
-tag_pjax.reset();
-var index_left = {
-	out: function() {
-		return new Promise(function(resolve, reject) {
-			var target = $(".index-left-default");
-			if(target.length==0) {
-				resolve();
-			}
-			else {
-				target.fadeOut(100*ANI_MULTI, function(){
-					resolve();
-				});
-			}
-		});
-	},
-	in: function() {
-		return new Promise(function(resolve, reject) {
-			var target = $(".index-left-default");
-			if(target.length==0) {
-				resolve();
-			}
-			else {
-				$(".index-left-default").fadeIn(100*ANI_MULTI, function(){
-					resolve();
-				});
-			}
-		});
-	},
+var get_all_tags = function(){
+  var li_list = $("#posts-archive-list li");
+  var all_tags_list = {};
+  for (var i = li_list.length - 1; i >= 0; i--) {
+    var li_tags_str = $(li_list[i]).attr("tags");
+    var li_tags_arr = li_tags_str.split(" ");
+    for (var j = li_tags_arr.length - 1; j >= 0; j--) {
+      var tag = li_tags_arr[j];
+      if(tag != "") {
+        if(!!all_tags_list[tag]) { all_tags_list[tag]++;}
+        else {all_tags_list[tag] = 1;}
+      }
+    }
+  }
+  return all_tags_list;
 };
-var tag_area = {
-	out: function() {
-		return new Promise(function(resolve, reject) {
-			$(".tag-results").fadeOut(100*ANI_MULTI, function(){
-				resolve();
-			});
-		});
-	},
-	in: function() {
-		return new Promise(function(resolve, reject) {
-			$(".tag-results").fadeIn(100*ANI_MULTI, function(){
-				resolve();
-			});
-		});
-	},
-	btn_clear_out: function() {
-		return new Promise(function(resolve, reject) {
-			$(".tags .clear").fadeOut(100*ANI_MULTI, function(){
-				resolve();
-			});
-		});
-	},
-	btn_clear_in: function() {
-		return new Promise(function(resolve, reject) {
-			$(".tags .clear").fadeIn(100*ANI_MULTI, function(){
-				resolve();
-			});
-		});
-	},
-}
+var sort_dictionary = function(dict){
+  var sortable = [];
+  for (var key in dict) {
+      sortable.push([key, dict[key]]);
+  }
+  sortable.sort(function(a, b) {
+      return a[1] - b[1];
+  });
+  return sortable;
+};
+var append_tag_li = function(sorted_array){
+  for (var i = sorted_array.length - 1; i >= 0; i--) {
+    var tag = sorted_array[i][0];
+    var count = sorted_array[i][1];
+    $("#tags-list").append("<li><a data-tag='"+tag+"' href='javascript:;'>"+tag+"</a></li>");
+    $("#tags-list li a[data-tag='"+tag+"']").on("click", function(){
+      toggle_tag($(this).data("tag"));
+    })
+  }
+};
+var toggle_tag = function(tag){
+  var li_list = $("#posts-archive-list li");
+  for (var i = li_list.length - 1; i >= 0; i--) {
+    var li = li_list[i];
+    var li_tags_str = $(li).attr("tags");
+    if(li_tags_str.indexOf(tag) >= 0){
+      $(li).removeClass("tag-hide");
+    } else {
+      $(li).addClass("tag-hide");
+    }
+  }
+  location.hash = tag;
+  clear_tags_active();
+  $("#tags-list li a[data-tag='"+tag+"']").addClass("tag-active");
+};
+var posts_show_all = function(){
+  var li_list = $("#posts-archive-list li");
+  for (var i = li_list.length - 1; i >= 0; i--) {
+    $(li_list[i]).removeClass("tag-hide");
+  }
+  location.hash = "";
+  clear_tags_active();
+  $("#clear_tags_active").addClass("tag-active");
+};
+var clear_tags_active = function(){
+  var li_list = $("#tags-list li a");
+  for (var i = li_list.length - 1; i >= 0; i--) {
+    $(li_list[i]).removeClass("tag-active");
+  }
+};
+
 $(function(){
-	// callback list
-	tag_pjax.bind({
-		tag_press: function(taga) {
-			log('[event] tag_pjax: tag_press');
-			taga.css('color', '#4184F3');
-		},
-		tag_popup: function(taga) {
-			log('[event] tag_pjax: tag_popup');
-			taga.css('color', '');
-		},
-		before: function() {
-			return new Promise(function(resolve, reject){
-				log('[event] tag_pjax: before');
-				Promise.all([
-					tag_area.out(),
-					index_left.out()
-					])
-					.then(resolve)
-					.catch(error);
-			});
-		},
-		after: function() {
-			return new Promise(function(resolve, reject){
-				log('[event] tag_pjax: after');
-				// 每次显示重新绑定
-				static_pjax(".tag-results a", "#frame-main-content");
-				// 动画效果
-				if(tag_pjax.isempty()){
-					Promise.all([
-						tag_area.btn_clear_out(),
-						tag_area.out(),
-						])
-					.then(index_left.in)
-					.then(resolve)
-					.catch(error);
-				}
-				else{
-					index_left.out().then(function(){
-						return Promise.all([
-							tag_area.in(),
-							tag_area.btn_clear_in(),
-							]);
-					})
-					.then(resolve)
-					.catch(error);
-				}
-			});
-		},
-		tag_clear: function() {
-			log('[event] tag_pjax: tag_clear');
-			$('.tags .tag').css('color', '');
-			Promise.all([
-				tag_area.btn_clear_out(),
-				tag_area.out(),
-				])
-			.then(index_left.in)
-			.catch(error);
-		},
-	});
-	// bind event
-	tag_pjax(".tags .tag", ".tag-results");
+  var all_tags_dict = get_all_tags();
+  var sorted_array = sort_dictionary(all_tags_dict);
+  append_tag_li(sorted_array);
+  var hash_tag = decodeURI(location.hash.substring(1));
+  toggle_tag(hash_tag);
 });
-function h4_tags_click() {
-	if(window.location.pathname!='/tags') {
-		var url = '/tags#' + tag_pjax.pressed_tag().join(",");
-		window.history.pushState('','', url);
-		static_pjax.on_url_change(url, '#frame-main-content');
-	}
-}
 </script>

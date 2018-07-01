@@ -26,7 +26,7 @@ sitemap: false
 <div class="container">
 <div class="row">
 	<div class="col-md-3 col-md-offset-2">
-		{% include tags.html %}
+		{% include tags-backup.html %}
 	</div>
 	<div class="col-md-7 tag-results">
 	</div>

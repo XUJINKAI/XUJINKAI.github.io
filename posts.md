@@ -3,6 +3,7 @@ layout: index
 permalink: /posts/
 title: 博文列表
 component: markdown
+sidebar: tags
 ---
 <style type="text/css">
   .sticky h4 {

@@ -18,16 +18,17 @@ drawer-close: true
 
 <!-- Title -->
 <h2>{{ page.title }}</h2>
-{% if page.tags.size > 0 %}
-<i>
-Tags: {% for tag in page.tags %}{% if tag != "" %}
-{{ tag }}
-{% if forloop.index != page.tags.size %}, {% endif %}{% endif %}{% endfor %}
-</i>
-{% endif %}
 <div class="post-date" style="color: gray;">
 	{{ page.date | date:"%Y-%m-%d" }}
 </div>
+{% if page.tags.size > 0 %}
+<i>
+Tags: {% for tag in page.tags %}{% if tag != "" %}
+<a href="/posts/#{{tag}}">{{ tag }}</a>
+{% if forloop.index != page.tags.size %}, {% endif %}{% endif %}{% endfor %}
+</i>
+{% endif %}
+<br>
 <br>
 <div id="toc-content" class="post-content" style="padding-bottom: 1px;">
 {{ content }}

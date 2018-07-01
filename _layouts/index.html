@@ -82,11 +82,11 @@ function search(){
       <span class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#main-drawer', swipe: true}">
         <i class="mdui-icon material-icons">menu</i>
       </span>
-      <a href="/" class="mdui-typo-title mdui-hidden-xs">
-        <i class="mdui-icon material-icons">home</i>
+      <a href="/" class="mdui-typo-title">
+        <span class="mdui-typo-title mdui-hidden-xs">XUJINKAI</span>
       </a>
       <div class="mdui-toolbar-spacer"></div>
-      <input class="mdui-typo-title" style="max-width: 20em;" type="" name="" id="search-box">
+      <input class="mdui-typo-title" style="max-width: 25em;" id="search-box" placeholder="搜索 XUJINKAI.net">
       <a href="javascript: search();">
       <i class="mdui-icon material-icons mdui-hidden-xs">search</i>
     </div>
@@ -135,14 +135,14 @@ function search(){
       </a>
 
       <li class="mdui-subheader">Manage</li>
+      <a class="mdui-list-item mdui-ripple" href="/admin">
+          <i class="mdui-list-item-icon mdui-icon material-icons">build</i>
+          <div class="mdui-list-item-content">Admin</div>
+      </a>
       <a class="mdui-list-item mdui-ripple" href="https://github.com/XUJINKAI/XUJINKAI.github.io/blob/master/{{page.path}}" target="_blank">
           <i class="mdui-list-item-icon mdui-icon material-icons">open_in_browser</i>
           <div class="mdui-list-item-content">View on GitHub</div>
           <i class="mdui-icon material-icons">open_in_new</i>
-      </a>
-      <a class="mdui-list-item mdui-ripple" href="/admin">
-          <i class="mdui-list-item-icon mdui-icon material-icons">build</i>
-          <div class="mdui-list-item-content">Admin</div>
       </a>
     </div>
   </div>
@@ -165,6 +165,9 @@ function search(){
         {% endif %}
         {% if page.sidebar == 'toc' or layout.sidebar == 'toc' %}
         {% include toc.html %}
+        {% endif %}
+        {% if page.sidebar == 'tags' or layout.sidebar == 'tags' %}
+        {% include tags.html %}
         {% endif %}
     </div>
     <div class="mdui-col-md-1"></div>

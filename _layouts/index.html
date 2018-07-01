@@ -88,14 +88,14 @@ img {
   <script>
 $(function(){
     inst = new mdui.Drawer('#main-drawer');
-    $("#search-box").keydown(function(event){
+    $("#search-input").keydown(function(event){
       if(event.keyCode == 13){
         search();
       }
     });
 });
 function search(){
-  var text = $("#search-box")[0].value;
+  var text = $("#search-input")[0].value;
   if(text!=""){
     window.open("https://google.com/search?q=site:xujinkai.net "+text);
   }

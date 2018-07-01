@@ -1,0 +1,101 @@
+<style type="text/css">
+.next-previous span,
+.next-previous a{
+    width: calc(100%-1em);
+    height: 4em;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-transform: none;
+    line-height: normal;
+    vertical-align: middle;
+}
+</style>
+
+<div id="toc-sidebar-div">
+<br>
+<br>
+
+<div class="next-previous">
+    {%if page.next%}
+    <a href="{{page.next.url}}" class="mdui-btn mdui-btn-raised">
+      新: {{page.next.title}}
+    </a>
+    {% else %}
+    <span class="mdui-btn">无</span>
+    {%endif%}
+    <br>
+    {%if page.previous%}
+    <a href="{{page.previous.url}}" class="mdui-btn mdui-btn-raised">
+      旧: {{page.previous.title}}
+    </a>
+    {% else %}
+    <span class="mdui-btn">无</span>
+    {%endif%}
+</div>
+
+<style>
+@media (max-width: 1023px){
+  #scrollToTop {
+    display: none !important;
+  }
+}
+</style>
+<a id="scrollToTop" href="javascript:window.scrollTo(0,0);" class="mdui-btn" style="margin-left: 15px; margin-top: 20px; text-decoration: underline;">↑前往最上</a>
+
+<!-- https://tscanlin.github.io/tocbot/#api -->
+<link rel="stylesheet" href="/css/tocbot.css">
+<style>
+#toc .is-active-link {
+  font-weight: normal;
+}
+@media (min-width: 1024px){
+  #toc-sidebar-div {
+    position: fixed;
+  }
+  #toc .is-active-link {
+    font-weight: 700;
+  }
+}
+#toc {
+    padding-top: 20px;
+}
+#toc ul,
+#toc ol {
+  list-style: none;
+}
+#toc li {
+    padding: 8px 0px 0px 1.4em
+}
+#toc a {
+    text-decoration: none;
+}#toc a.toc-link {
+    height: auto;
+}
+#toc li a + ol {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+</style>
+<div id="toc"></div>
+<script src="/js/tocbot.min.js"></script>
+<script>
+$(function(){
+  tocbot.init({
+    // Where to render the table of contents.
+    tocSelector: '#toc',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: '#toc-content',
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: 'h1, h2, h3',
+    scrollSmoothDuration: 200,
+    isCollapsedClass: 'is-collapsed-', //disable collapse
+  });
+});
+</script>
+
+<a href="#comment" class="mdui-btn" style="margin-left: 15px; margin-top: 20px; text-decoration: underline;">
+  ↓前往评论 <span class="disqus-comment-count" data-disqus-identifier="{{page.url}}"></span>
+</a>
+<script id="dsq-count-scr" src="//xujinkai.disqus.com/count.js" async></script>
+
+</div>

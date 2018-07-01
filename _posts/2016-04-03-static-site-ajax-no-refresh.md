@@ -91,15 +91,19 @@ promise刚开始使用总是出错，习惯以后非常方便。
 
 google analytics，如果有用到的话，要在每次url改变后告诉ga：
 
-		if(ga) {
-			ga('set', 'location', window.location.href);
-			ga('send', 'pageview');
-		}
+```js
+if(ga) {
+	ga('set', 'location', window.location.href);
+	ga('send', 'pageview');
+}
+```
 
 多说评论:
 
 在框架部分加载多说的embed.js，然后每次url改变后运行：
 
-		DUOSHUO.EmbedThread($('.ds-thread'));
+```js
+DUOSHUO.EmbedThread($('.ds-thread'));
+```
 
 多说的相关文档<http://dev.duoshuo.com/docs/50b344447f32d30066000147>{:target="_blank"}

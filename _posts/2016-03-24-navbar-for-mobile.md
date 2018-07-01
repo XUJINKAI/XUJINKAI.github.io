@@ -13,39 +13,39 @@ date: 2016-03-24 18:12:33 +0800
 从这里<http://note.rpsh.net/>{:target="_blank"}学来一招，让移动端中的导航条不再固定，并且折叠菜单更美观，不再占用大半个屏幕。
 
 <!--more-->
+```css
+.navbar {
+	position: fixed;
+	width: 100%;
+	height: 20px;
+	z-index: 20;
+	border-radius: 0;
+	background-color: rgba(0, 0, 0, 0.87);
+	border-color: rgba(255, 255, 255, 0);
+}
 
-		.navbar {
-			position: fixed;
-			width: 100%;
-			height: 20px;
-			z-index: 20;
-			border-radius: 0;
-			background-color: rgba(0, 0, 0, 0.87);
-			border-color: rgba(255, 255, 255, 0);
-		}
+@media (max-width: 768px) {
+	.navbar {
+		position: static;
+	}
+	div .navbar-collapse {
+	    position: absolute;
+	    background-color: rgba(0, 0, 0, 0.90);
+	    z-index: 20;
+		width: 170px;
+	    right: 30px;
+	}
+	.content {
+		padding-top: 0px;
+	}
+}
 
-		@media (max-width: 768px) {
-			.navbar {
-				position: static;
-			}
-			div .navbar-collapse {
-			    position: absolute;
-			    background-color: rgba(0, 0, 0, 0.90);
-			    z-index: 20;
-				width: 170px;
-			    right: 30px;
-			}
-			.content {
-				padding-top: 0px;
-			}
-		}
-
-		@media (min-width: 769px) {
-			.content {
-				padding-top: 60px;
-			}
-		}
-
+@media (min-width: 769px) {
+	.content {
+		padding-top: 60px;
+	}
+}
+```
 其中.content是正文所属的class。  
 
 具体效果改变本站窗口大小就能看到。  

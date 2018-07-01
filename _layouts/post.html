@@ -1,35 +1,20 @@
 --- 
-layout: frame
+layout: index
+component:
+  - jquery
+  - markdown
+sidebar: toc
+drawer-close: true
 --- 
 <style>
-.post-content{
+.main-content{
   font-size: 1.2em;
-}
-#frame-content {
   max-width: 768px;
 }
+.post-content>*:first-child {
+    margin-top: 0 !important;
+}
 </style>
-
-<link href="/css/rouge-monokai.css" rel="stylesheet"/>
-
-<!-- next and previous -->
-<ul class="pager" id="post-pager">
-  {%if page.next%}
-  <li class="next pull-right">
-    <a href="{{page.next.url}}">
-      Newer: {{page.next.title}}
-    </a>
-  </li>
-  {%endif%}
-  {%if page.previous%}
-  <li class="previous">
-    <a href="{{page.previous.url}}">
-      Older: {{page.previous.title}}
-    </a>
-  </li>
-  {%endif%} 
-</ul>
-<hr>
 
 <!-- Title -->
 <h2>{{ page.title }}</h2>
@@ -40,9 +25,10 @@ Tags: {% for tag in page.tags %}{% if tag != "" %}
 {% if forloop.index != page.tags.size %}, {% endif %}{% endif %}{% endfor %}
 </i>
 {% endif %}
-<div class="post-date" style="padding: 15px 0 0 0px; color: gray;">
+<div class="post-date" style="color: gray;">
 	{{ page.date | date:"%Y-%m-%d" }}
 </div>
-<div class="post-content markdown-body" style="padding-top: 20px; padding-bottom: 50px;">
+<br>
+<div id="toc-content" class="post-content" style="padding-bottom: 1px;">
 {{ content }}
 </div>

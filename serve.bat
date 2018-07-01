@@ -1,1 +1,1 @@
-jekyll s -P 80
+jekyll s -H 0.0.0.0 -P 80

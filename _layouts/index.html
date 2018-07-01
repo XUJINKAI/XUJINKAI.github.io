@@ -1,39 +1,184 @@
----
-layout: null
----
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cmn-Hans">
 <head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=2,user-scalable=no"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
   <link rel="shortcut icon" type="image/x-ico" href="/favicon.ico"/>
   <meta name="author" content="{{site.author}}" />
-  <title>{{ page.title }}</title>
-  <!-- jQuery -->
-  <!-- <script src="/js/jquery-1.12.2.min.js"> </script> -->
-  <!-- Bootstrap -->
-  <!-- <link href="/css/bootstrap.min.css" rel="stylesheet"/> -->
-  <!-- <script src="/js/bootstrap.min.js"></script> -->
+  <title>{{ page.title }} - XUJINKAI</title>
+  {% assign this_components = 'mdui jquery' | split: ' ' %}
+  {% assign layout_components = layout.component | compact %}
+  {% assign page_components = page.component | compact %}
+  {% assign components_infile = this_components | concat: layout_components | concat: page_components %}
+  {% assign components = components_infile[1] %}
+  {% for item in components_infile %}
+      {% unless components contains item %}
+          {% capture components %}{{ components }} {{ item }}{% endcapture %}
+      {% endunless %}
+  {% endfor %}
+  {% assign components = components | split: ' ' %}
+  {% for com in components %}
+  {% if com == "jquery" %}
+  <script src="/js/jquery-1.12.2.min.js"></script>
+  {% endif %}
+  {% if com == "bootstrap" %}
+  <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="/js/bootstrap.min.js"></script>
+  {% endif %}
+  {% if com == "font-awesome" %}
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+  {% endif %}
+  {% if com == "promise-polyfill" %}
+    <script src="/js/promise.min.js"></script>
+  {% endif %}
+  {% if com == "markdown" %}
+  {% assign markdown = true %}
+  <link href="/css/rouge-monokai.css" rel="stylesheet"/>
   <link href="/css/github-markdown.css" rel="stylesheet"/>
-<style>
+  {% endif %}
+  {% if com == "mdui" %}
+  <!-- https://www.mdui.org/docs/ -->
+  <link href="/css/mdui.min.css" rel="stylesheet"/>
+  <script src="/js/mdui.min.js"></script>
+  {% endif %}
+  {% endfor %}
+  <style>
+html {
+  border-radius: 0 !important;
+    /*overflow-y:scroll;*/
+}
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
-</style>
+img {
+  max-width: 100%;
+  max-height: 1024px;
+}
+  </style>
+  <script>
+$(function(){
+    inst = new mdui.Drawer('#main-drawer');
+    $("#search-box").keydown(function(event){
+      if(event.keyCode == 13){
+        search();
+      }
+    });
+});
+function search(){
+  var text = $("#search-box")[0].value;
+  if(text!=""){
+    window.open("https://google.com/search?q=site:xujinkai.net "+text);
+  }
+};
+
+  </script>
 </head>
-  
-<body>
-<div align="center">
-<div class="index-content" align="left">
-{{ content }}
 
-{%if page.comment %}
-{% include comments.html %}
-{% endif %}
+<body class="mdui-appbar-with-toolbar mdui-loaded mdui-drawer-body-left mdui-theme-primary-indigo mdui-theme-accent-pink">
+  <div class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-toolbar-hide" style="
+  z-index: 6000;"><!-- 覆盖抽屉栏 -->
+    <div class="mdui-toolbar mdui-color-theme">
+      <span class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#main-drawer', swipe: true}">
+        <i class="mdui-icon material-icons">menu</i>
+      </span>
+      <a href="/" class="mdui-typo-title mdui-hidden-xs">
+        <i class="mdui-icon material-icons">home</i>
+      </a>
+      <div class="mdui-toolbar-spacer"></div>
+      <input class="mdui-typo-title" style="max-width: 20em;" type="" name="" id="search-box">
+      <a href="javascript: search();">
+      <i class="mdui-icon material-icons mdui-hidden-xs">search</i>
+    </div>
+  </div>
 
-</div>
-</div>
+  <div id="main-drawer" class="mdui-drawer mdui-color-grey-50 mdui-drawer-full-height 
+    {%if page.drawer-close or layout.drawer-close %}mdui-drawer-close{%endif%}
+  ">
+    <div class="mdui-list">
+      <a class="mdui-list-item mdui-ripple" href="/" style="margin-top: 60px;">
+          <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+          <div class="mdui-list-item-content">主页</div>
+      </a>
+      <a class="mdui-list-item mdui-ripple" href="/posts">
+          <i class="mdui-list-item-icon mdui-icon material-icons">list</i>
+          <div class="mdui-list-item-content">全部博文</div>
+      </a>
+
+      <li class="mdui-subheader">Link</li>
+      <a class="mdui-list-item mdui-ripple" href="/projects">
+          <i class="mdui-list-item-icon mdui-icon material-icons">work</i>
+          <div class="mdui-list-item-content">个人项目</div>
+      </a>
+      <a class="mdui-list-item mdui-ripple" href="/contact">
+          <i class="mdui-list-item-icon mdui-icon material-icons">person</i>
+          <div class="mdui-list-item-content">联系方式</div>
+      </a>
+      <a class="mdui-list-item mdui-ripple" href="/donate">
+          <i class="mdui-list-item-icon mdui-icon material-icons">tag_faces</i>
+          <div class="mdui-list-item-content">捐赠</div>
+      </a>
+      <a class="mdui-list-item mdui-ripple" href="https://wiki.xujinkai.net" target="_blank">
+          <i class="mdui-list-item-icon mdui-icon material-icons">book</i>
+          <div class="mdui-list-item-content">Wiki</div>
+          <i class="mdui-icon material-icons">open_in_new</i>
+      </a>
+
+      <li class="mdui-subheader">Site</li>
+      <a class="mdui-list-item mdui-ripple" href="/feed.xml">
+          <i class="mdui-list-item-icon mdui-icon material-icons">rss_feed</i>
+          <div class="mdui-list-item-content">RSS</div>
+      </a>
+      <a class="mdui-list-item mdui-ripple" href="/sitemap.xml">
+          <i class="mdui-list-item-icon"></i>
+          <div class="mdui-list-item-content">Sitemap</div>
+      </a>
+
+      <li class="mdui-subheader">Manage</li>
+      <a class="mdui-list-item mdui-ripple" href="https://github.com/XUJINKAI/XUJINKAI.github.io/blob/master/{{page.path}}" target="_blank">
+          <i class="mdui-list-item-icon mdui-icon material-icons">open_in_browser</i>
+          <div class="mdui-list-item-content">View on GitHub</div>
+          <i class="mdui-icon material-icons">open_in_new</i>
+      </a>
+      <a class="mdui-list-item mdui-ripple" href="/admin">
+          <i class="mdui-list-item-icon mdui-icon material-icons">build</i>
+          <div class="mdui-list-item-content">Admin</div>
+      </a>
+    </div>
+  </div>
+
+<style>
+@media (min-width: 1024px){
+  .mdui-container > .mdui-col-md-3,
+  .mdui-container > .mdui-col-md-1 {
+    float: right;
+  }
+}
+.main-content>*:first-child {
+    margin-top: 0 !important;
+}
+</style>
+  <div class="mdui-container">
+    <div class="mdui-col-md-3">
+        {% if page.sidebar == 'bio' or layout.sidebar == 'bio' %}
+        {% include bio.html %}
+        {% endif %}
+        {% if page.sidebar == 'toc' or layout.sidebar == 'toc' %}
+        {% include toc.html %}
+        {% endif %}
+    </div>
+    <div class="mdui-col-md-1"></div>
+    <div class="mdui-col-md-8">
+      <div class="main-content {%if markdown == true %}markdown-body{%endif%}">
+        {{ content }}
+        {%if page.comment %}
+        <hr style="height: 1px; width: 100%;">
+        {% include comments.html %}
+        {% endif %}
+      </div>
+    </div>
+    
+  </div>
 
 {% include analytics.html %}
 </body>

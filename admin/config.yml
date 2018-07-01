@@ -8,7 +8,7 @@ media_folder: "uploads" # Folder where user uploaded files should go
 # slug:
 #   encoding: "ascii"
 #   clean_accents: true
-publish_mode: editorial_workflow
+# publish_mode: editorial_workflow
 
 collections: # A list of collections the CMS should be able to edit
   - name: "post" # Used in routes, ie.: /admin/collections/:slug/edit
@@ -20,11 +20,11 @@ collections: # A list of collections the CMS should be able to edit
     fields: # The fields each document in this collection have
       - {label: "Permalink", name: "permalink", widget: "string", default: "/posts/new", required: true}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
-      - {label: "Tags", name: "tags", widget: "string", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: true}
       - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD HH:mm:ss Z"}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Comment", name: "comment", widget: "boolean", default: true}
-      - {label: "Layout", name: "layout", widget: "select", options: ["null", "index", "frame", "post"], default: "post"}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
     meta: # Meta data fields. Just like fields, but without any preview element
   - name: "pages"
     label: "Pages"
@@ -38,17 +38,7 @@ collections: # A list of collections the CMS should be able to edit
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Sitemap", name: "sitemap", widget: "boolean", default: true}
       - {label: "Comment", name: "comment", widget: "boolean", default: true}
-      - {label: "Layout", name: "layout", widget: "select", options: ["null", "index", "frame", "post"], default: "index"}
-  - name: "sites"
-    label: "Root Page"
-    folder: "/"
-    sort: "title:asc"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Permalink", name: "permalink", widget: "string", default: "/new", required: true}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Sitemap", name: "sitemap", widget: "boolean", default: true}
-      - {label: "Comment", name: "comment", widget: "boolean", default: false}
-      - {label: "Layout", name: "layout", widget: "select", options: ["null", "index", "frame", "post"], default: "index"}
+      - {label: "DrawerClose", name: "drawer-close", widget: "boolean", default: false}
+      - {label: "SideBar", name: "sidebar", widget: "select", options: ["null", "bio", "toc"], default: "null"}
+      - {label: "Layout", name: "layout", widget: "select", options: ["null", "index", "post"], default: "index"}
+      - {label: "Component", name: "component", widget: "list", default: []}

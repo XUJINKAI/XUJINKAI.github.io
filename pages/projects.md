@@ -2,7 +2,6 @@
 permalink: /projects
 layout: index
 title: 个人项目
-sitemap: true
 comment: false
 component: markdown
 ---

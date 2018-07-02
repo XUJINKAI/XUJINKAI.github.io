@@ -2,9 +2,7 @@
 permalink: /donate
 layout: index
 title: DONATE 捐赠
-sitemap: false
 comment: false
-component:
 component: markdown
 ---
 <style type="text/css">

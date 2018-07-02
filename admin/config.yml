@@ -38,7 +38,6 @@ collections: # A list of collections the CMS should be able to edit
       - {label: "Permalink", name: "permalink", widget: "string", default: "/pages/new", required: true}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Sitemap", name: "sitemap", widget: "boolean", default: true}
       - {label: "Comment", name: "comment", widget: "boolean", default: true}
       - {label: "DrawerClose", name: "drawer-close", widget: "boolean", default: false}
       - {label: "SideBar", name: "sidebar", widget: "select", options: ["null", "bio", "toc"], default: "null"}

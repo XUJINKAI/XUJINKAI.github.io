@@ -1,7 +1,6 @@
 ---
 permalink: /about
 title: 关于
-sitemap: true
 comment: true
 drawer-close: false
 sidebar: 'null'

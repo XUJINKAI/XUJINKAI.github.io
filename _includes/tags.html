@@ -4,6 +4,8 @@
 }
 .tag-active {
   font-weight: bolder;
+  text-decoration: underline;
+  font-style: italic;
 }
 ul#tags-list{
   list-style: none;
@@ -44,7 +46,6 @@ ul#tags-list li a:hover {
 }
 </style>
 <ul id="tags-list">
-  <li><a id="all-tags" href="javascript:posts_show_all();">All</a></li>
 </ul>
 <hr class="separate">
 <script>
@@ -80,26 +81,31 @@ var append_tag_li = function(sorted_array){
     var count = sorted_array[i][1];
     var count_str = "<span class='tag-count'>"+count+"</span>";
     if(count == 1) count_str = "";
-    $("#tags-list").append("<li><a data-tag='"+tag+"' href='javascript:;'>"+tag+"</a>"+count_str+"</li>");
-    $("#tags-list li a[data-tag='"+tag+"']").on("click", function(){
+    $("#tags-list").append("<li data-tag='"+tag+"'><a href='javascript:;'>"+tag+"</a>"+count_str+"</li>");
+    $("#tags-list li[data-tag='"+tag+"']").on("click", function(){
       toggle_tag($(this).data("tag"));
     })
   }
 };
 var toggle_tag = function(tag){
-  var li_list = $("#posts-archive-list li");
-  for (var i = li_list.length - 1; i >= 0; i--) {
-    var li = li_list[i];
-    var li_tags_str = $(li).attr("tags");
-    if(li_tags_str.indexOf(tag) >= 0){
-      $(li).removeClass("tag-hide");
-    } else {
-      $(li).addClass("tag-hide");
+    var tagli = $("#tags-list li[data-tag='"+tag+"']");
+    if(tagli.hasClass("tag-active")){
+        posts_show_all();
+    }else{
+      var li_list = $("#posts-archive-list li");
+      for (var i = li_list.length - 1; i >= 0; i--) {
+        var li = li_list[i];
+        var li_tags_str = $(li).attr("tags");
+        if(li_tags_str.indexOf(tag) >= 0){
+          $(li).removeClass("tag-hide");
+        } else {
+          $(li).addClass("tag-hide");
+        }
+      }
+      location.hash = tag;
+      clear_tags_active();
+      $("#tags-list li[data-tag='"+tag+"']").addClass("tag-active");
     }
-  }
-  location.hash = tag;
-  clear_tags_active();
-  $("#tags-list li a[data-tag='"+tag+"']").addClass("tag-active");
 };
 var posts_show_all = function(){
   var li_list = $("#posts-archive-list li");
@@ -111,7 +117,7 @@ var posts_show_all = function(){
   $("#clear_tags_active").addClass("tag-active");
 };
 var clear_tags_active = function(){
-  var li_list = $("#tags-list li a");
+  var li_list = $("#tags-list li");
   for (var i = li_list.length - 1; i >= 0; i--) {
     $(li_list[i]).removeClass("tag-active");
   }

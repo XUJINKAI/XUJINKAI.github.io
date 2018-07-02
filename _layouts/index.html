@@ -103,6 +103,12 @@ function search(){
 
   </script>
 </head>
+{% if page.path contains '_posts' %}
+{% assign filename = page.path | remove_first : "_posts/" | remove: ".md" %}
+{% assign admin_url = "/admin/#/collections/post/entries/" | append: filename %}
+{% else %}
+{% assign admin_url = "/admin" %}
+{% endif %}
 
 {% if page.drawer-close or layout.drawer-close %}
 {% assign drawer = false %}
@@ -121,19 +127,13 @@ function search(){
         <span class="mdui-typo-title">XUJINKAI</span>
       </a>
       <div class="mdui-toolbar-spacer"></div>
+      <a href="{{admin_url}}" target="_blank" class="mdui-typo-title mdui-hidden-xs">
+        <i class="mdui-icon material-icons">create</i>
+      </a>
       <div id="search-box" class="mdui-typo-title">
 	      <i id="search-icon" class="mdui-icon material-icons">search</i>
 	      <input id="search-input" placeholder="XUJINKAI.net">
       </div>
-      {% if page.path contains '_posts' %}
-      {% assign filename = page.path | remove_first : "_posts/" | remove: ".md" %}
-      {% assign admin_url = "/admin/#/collections/post/entries/" | append: filename %}
-      {% else %}
-      {% assign admin_url = "/admin" %}
-      {% endif %}
-      <a href="{{admin_url}}" target="_blank" class="mdui-typo-title mdui-hidden-xs">
-        <i class="mdui-icon material-icons">create</i>
-      </a>
       <a class="mdui-typo-title" href="https://github.com/XUJINKAI/XUJINKAI.github.io/blob/master/{{page.path}}" target="_blank">
          <svg version="1.1" x="0px" y="0px" viewBox="0 0 36 36" enable-background="new 0 0 36 36" xml:space="preserve" class="mdui-list-item-icon mdui-icon" style="width: 24px;height:24px;">
             <path fill-rule="evenodd" clip-rule="evenodd" fill="#fff" d="M18,1.4C9,1.4,1.7,8.7,1.7,17.7c0,7.2,4.7,13.3,11.1,15.5

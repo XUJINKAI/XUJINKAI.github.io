@@ -22,6 +22,7 @@ collections: # A list of collections the CMS should be able to edit
       - {label: "Display", name: "display", widget: "select", options: ["normal", "sticky", "hide"], default: "normal"}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
       - {label: "Tags", name: "tags", widget: "string", required: true}
+      - {label: "Emoji-Tag", name: "emotag", widget: "string", required: false}
       - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD HH:mm:ss Z"}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Comment", name: "comment", widget: "boolean", default: true}

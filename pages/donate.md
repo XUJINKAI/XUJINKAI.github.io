@@ -5,6 +5,7 @@ title: DONATE 捐赠
 sitemap: false
 comment: false
 component:
+component: markdown
 ---
 <style type="text/css">
 img {
@@ -14,8 +15,8 @@ img {
 }
 </style>
 
-## 微信
+# 微信
 <img src="/uploads/wechat.png" alt="">
 
-## 支付宝
+# 支付宝
 <img src="/uploads/alipay.jpg" alt="">

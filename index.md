@@ -21,6 +21,10 @@ sidebar: bio
 .sticky-text {
 	font-size: 16px;
 }
+.emotag {
+	padding-left: 8px;
+	font-size: .8em;
+}
 </style>
 
 <div id="recent-posts">
@@ -38,7 +42,7 @@ sidebar: bio
 	{% assign count = count | plus: 1 %}
 	{% if count <= 5 %}
 	<h1><a href="{{post.url}}">{{post.title}}</a></h1>
-	<p>{{ post.date | date:"%Y-%m-%d" }}</p>
+	<p>{{ post.date | date:"%Y-%m-%d" }}<span class="emotag">{{ post.emotag }}</span></p>
 	<p>{{post.excerpt | strip_html | truncate: 140}}</p>
 	{% endif %}
 	{% endif %}

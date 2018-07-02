@@ -1,10 +1,11 @@
 ---
 permalink: /posts/netlify-as-github-pages-cms
 title: 为Github Pages添加后台管理界面
-tags: jekyll cms
+tags: jekyll
 date: '2018-06-23 13:33:56 +08:00'
 comment: true
 layout: post
+emotag: 🔥
 ---
 GitHub Pages哪儿都好，就是没有后台管理（因为是静态博客嘛），每次需要本地写markdown然后push，很是繁琐。
 

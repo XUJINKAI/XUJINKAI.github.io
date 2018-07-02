@@ -13,21 +13,40 @@ ul#tags-list li {
   margin: 8px 0;
   font-size: 1.05em;
 }
+ul#tags-list li .tag-count {
+  color: grey;
+  font-size: .6em;
+  padding-left: .8em;
+}
+hr.separate{
+  display: none;
+}
 @media(max-width: 1024px){
   ul#tags-list li {
     display: inline;
     margin-right: 1em;
     font-size: 1.2em;
+    line-height: 1.6;
+  }
+  ul#tags-list li .tag-count {
+    display: none;
+  }
+  hr.separate{
+    display: block;
   }
 }
 ul#tags-list li a {
   text-decoration: none;
   color: #0366d6;
 }
+ul#tags-list li a:hover {
+  text-decoration: underline;
+}
 </style>
 <ul id="tags-list">
   <li><a id="all-tags" href="javascript:posts_show_all();">All</a></li>
 </ul>
+<hr class="separate">
 <script>
 var get_all_tags = function(){
   var li_list = $("#posts-archive-list li");
@@ -59,7 +78,9 @@ var append_tag_li = function(sorted_array){
   for (var i = sorted_array.length - 1; i >= 0; i--) {
     var tag = sorted_array[i][0];
     var count = sorted_array[i][1];
-    $("#tags-list").append("<li><a data-tag='"+tag+"' href='javascript:;'>"+tag+"</a></li>");
+    var count_str = "<span class='tag-count'>"+count+"</span>";
+    if(count == 1) count_str = "";
+    $("#tags-list").append("<li><a data-tag='"+tag+"' href='javascript:;'>"+tag+"</a>"+count_str+"</li>");
     $("#tags-list li a[data-tag='"+tag+"']").on("click", function(){
       toggle_tag($(this).data("tag"));
     })

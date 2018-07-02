@@ -1,11 +1,12 @@
 ---
-layout: post
-comment: true
 permalink: /posts/docker-aria2-with-webui
+display: normal
 title: 下载神器aria2及其Docker镜像制作
 tags: docker 工具
-date: 2016-12-14 00:26:44 +0800
-emotag: 🔥
+emotag: ''
+date: '2016-12-14 00:26:44 +0800'
+comment: true
+layout: post
 ---
 前一阵子买了群晖NAS，然后发现了docker这个神器。
 

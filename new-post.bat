@@ -10,7 +10,7 @@ set file=%dt%-%title%.md
 set fpath="%fd%/%file%"
 
 echo --->> %fpath%
-echo permalink: >> %fpath%
+echo permalink: /posts/%title%>> %fpath%
 echo display: normal>> %fpath%
 echo title: %title%>> %fpath%
 echo tags: >> %fpath%
@@ -18,6 +18,7 @@ echo emotag: >> %fpath%
 echo date: %dt% %hms% +08:00>> %fpath%
 echo comment: true>> %fpath%
 echo layout: post>> %fpath%
+echo component: >> %fpath%
 echo --->> %fpath%
 echo ^<!--more--^>>> %fpath%
 

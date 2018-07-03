@@ -1,5 +1,5 @@
 <style>
-.tag-hide{
+.hide{
   display: none;
 }
 .tag-active {
@@ -97,12 +97,12 @@ var toggle_tag = function(tag){
         var li = li_list[i];
         var li_tags_str = $(li).attr("tags");
         if(li_tags_str.indexOf(tag) >= 0){
-          $(li).removeClass("tag-hide");
+          $(li).removeClass("hide");
         } else {
-          $(li).addClass("tag-hide");
+          $(li).addClass("hide");
         }
       }
-      location.hash = tag;
+      setUrlTag(tag);
       clear_tags_active();
       $("#tags-list li[data-tag='"+tag+"']").addClass("tag-active");
     }
@@ -110,9 +110,9 @@ var toggle_tag = function(tag){
 var posts_show_all = function(){
   var li_list = $("#posts-archive-list li");
   for (var i = li_list.length - 1; i >= 0; i--) {
-    $(li_list[i]).removeClass("tag-hide");
+    $(li_list[i]).removeClass("hide");
   }
-  location.hash = "";
+  setUrlTag("");
   clear_tags_active();
   $("#clear_tags_active").addClass("tag-active");
 };
@@ -122,12 +122,37 @@ var clear_tags_active = function(){
     $(li_list[i]).removeClass("tag-active");
   }
 };
-
+function getUrlQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == variable) {
+            return decodeURIComponent(pair[1]);
+        }
+    }
+};
+function setUrlQueryVariable(key, value) {
+    var url = location.origin + location.pathname + "?" + key + "=" + value;
+    history.pushState("", "", url);
+};
+function setUrlTag(value){
+    if(value == "") {
+        var url = location.origin + location.pathname;
+        history.pushState("", "", url);
+    } else {
+        setUrlQueryVariable("tag", value);
+    }
+};
 $(function(){
   var all_tags_dict = get_all_tags();
   var sorted_array = sort_dictionary(all_tags_dict);
   append_tag_li(sorted_array);
-  var hash_tag = decodeURI(location.hash.substring(1));
-  toggle_tag(hash_tag);
+  var tag = getUrlQueryVariable("tag");
+  if(!!tag) {
+    toggle_tag(tag);
+  } else {
+    posts_show_all();
+  }
 });
 </script>

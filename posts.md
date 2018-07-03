@@ -51,7 +51,7 @@ ul.list-unstyled#posts-archive-list{
 
 <ul class="list-unstyled" id="posts-archive-list">
     {% for post in site.posts %}
-      <li tags="{%for tag in post.tags%}{{tag}} {%endfor%}">
+      <li tags="{%for tag in post.tags%}{{tag}} {%endfor%}" class="hide">
         <span class="display-icon mobile-hidden">
           {% if post.display == "sticky" %}📌
           {% elsif post.display == "hide" %}#

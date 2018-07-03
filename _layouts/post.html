@@ -33,7 +33,7 @@ drawer-close: false
 </div>
 <i>
 Tags: {% for tag in page.tags %}{% if tag != "" %}
-<a href="/posts/#{{tag}}">{{ tag }}</a>
+<a href="/posts/?tag={{tag}}">{{ tag }}</a>
 {% if forloop.index != page.tags.size %}, {% endif %}{% endif %}{% endfor %}
 </i>
 <br>

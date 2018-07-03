@@ -5,9 +5,6 @@ component: markdown
 sidebar: bio
 ---
 <style type="text/css">
-.main-container {
-	margin-top: 2em;
-}
 #recent-posts>*:first-child {
     margin-top: 0 !important;
 }

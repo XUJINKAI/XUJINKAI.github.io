@@ -6,9 +6,6 @@ component: markdown
 sidebar: tags
 ---
 <style type="text/css">
-.main-container {
-  margin-top: 32px;
-}
 ul.list-unstyled#posts-archive-list{
   padding-left: 0;
 }

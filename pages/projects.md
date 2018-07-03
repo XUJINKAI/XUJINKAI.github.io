@@ -6,8 +6,6 @@ comment: false
 component: markdown
 ---
 
-<br>
-
 ## [OneQuick - 热键工具](http://onequick.org/)
 
 Windows热键辅助工具，简化操作，提高效率。

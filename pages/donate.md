@@ -3,7 +3,7 @@ permalink: /donate
 layout: index
 title: DONATE 捐赠
 comment: false
-component: markdown
+component: 
 ---
 <style type="text/css">
 img {

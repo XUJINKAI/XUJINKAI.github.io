@@ -19,7 +19,7 @@
       新: {{page.next.title}}
     </a>
     {% else %}
-    <span class="mdui-btn mdui-center mdui-valign">无</span>
+    <span class="mdui-btn mdui-center mdui-valign mdui-ripple">最新</span>
     {%endif%}
     <br>
     {%if page.previous%}
@@ -41,7 +41,7 @@
 <a id="scrollToTop" href="javascript:window.scrollTo(0,0);" class="mdui-btn" style="margin-left: 15px; margin-top: 20px; text-decoration: underline;">↑返回顶部</a>
 
 <!-- https://tscanlin.github.io/tocbot/#api -->
-<link rel="stylesheet" href="/css/tocbot.css">
+<link rel="stylesheet" href="/static/tocbot/tocbot.css">
 <style>
 #toc .is-active-link {
   font-weight: normal;
@@ -76,7 +76,7 @@
 }
 </style>
 <div id="toc"></div>
-<script src="/js/tocbot.min.js"></script>
+<script src="/static/tocbot/tocbot.min.js"></script>
 <script>
 $(function(){
   tocbot.init({

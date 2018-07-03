@@ -133,13 +133,13 @@ function getUrlQueryVariable(variable) {
     }
 };
 function setUrlQueryVariable(key, value) {
-    var url = location.origin + location.pathname + "?" + key + "=" + value;
-    history.pushState("", "", url);
+    var url = location.origin + location.pathname + "?" + key + "=" + encodeURIComponent(value);
+    history.replaceState("", "", url);
 };
 function setUrlTag(value){
     if(value == "") {
         var url = location.origin + location.pathname;
-        history.pushState("", "", url);
+        history.replaceState("", "", url);
     } else {
         setUrlQueryVariable("tag", value);
     }

@@ -8,8 +8,6 @@ layout: index
 component: markdown
 ---
 
-<span></span><!-- first-child -->
-
 # 联系方式
 
 - [GitHub (XUJINKAI)](https://github.com/XUJINKAI)
@@ -22,10 +20,4 @@ component: markdown
 
 [RSS](/feed.xml), [Sitemap](/sitemap.xml)
 
-## 目前网站用到的工具
-
-Jekyll, Disqus, Google Analytics
-
-JQuery, <a href="https://www.mdui.org/" target="_blank">MDUI</a>, <a href="https://tscanlin.github.io/tocbot/" target="_blank">Tocbot</a>, <a href="https://www.bryanbraun.com/anchorjs/" target="_blank">Anchorjs</a>
-
-<a href="/posts/netlify-as-github-pages-cms">netlify-cms</a>
+[本博客用到的技术](/posts/this-blog-2.0)

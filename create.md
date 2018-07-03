@@ -37,6 +37,10 @@ body {
     resize: none;
     max-width: 768px;
     float: right;
+    font-family: consolas;
+}
+#raw-markdown:focus {
+    outline: none;
 }
 .markdown-preview {
     overflow: scroll;
@@ -103,25 +107,10 @@ function syncScroll(from, to){
         $(to).scrollTop(scrollTo);
     });
 };
-function textarea_insert_tab(){
+function textarea_handle_special_keydown(){
     $("textarea").keydown(function(e) {
+        // 没有history，修改文本后无法ctrl z，所以直接屏蔽掉
         if(e.keyCode === 9) { // tab was pressed
-            // get caret position/selection
-            var start = this.selectionStart;
-            var end = this.selectionEnd;
-
-            var $this = $(this);
-            var value = $this.val();
-
-            // set textarea value to: text before caret + tab + text after caret
-            $this.val(value.substring(0, start)
-                        + "\t"
-                        + value.substring(end));
-
-            // put caret at right position again (add one for the tab)
-            this.selectionStart = this.selectionEnd = start + 1;
-
-            // prevent the focus lose
             e.preventDefault();
         }
     });
@@ -149,6 +138,7 @@ function render(){
     renderMarkdown(raw, selector_right);
     openInNew(selector_right);
     createToc();
+    syncScroll(selector_left, selector_right);
 };
 $(function(){
     $(selector_left)[0].value = localStorage.getItem("md");
@@ -157,14 +147,10 @@ $(function(){
         localStorage.setItem("md", $(selector_left)[0].value);
         render();
     });
-    textarea_insert_tab();
+    textarea_handle_special_keydown();
 
-    var stopAnother = false;
     $(selector_left).scroll(function() {
-        if(stopAnother) return;
-        var stopAnother = true;
         syncScroll(selector_left, selector_right);
-        var stopAnother = false;
     });
 });
 </script>

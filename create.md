@@ -98,6 +98,7 @@ body {
         <button onclick="InsertMetaData()">Insert MetaData</button>
         <button onclick="DownloadFile()">Dwonload</button>
         <span>字数：</span><span class="markdown-length"></span>
+        <button style="float: right; color: red;" onclick="ClearLocalStorage();">清空全部数据</button>
     </div>
     <div class="mdui-container content-container">
         <div class="mdui-col-md-5 markdown-editor">
@@ -127,12 +128,21 @@ if(CurrentSaveFileNum === null){
         $.get(url, function(data){
             if(getCurrentSaveFile() === null){
                 set_rawValue(data);
+                setCurrentSaveFile(data);
                 render();
             }
         });
     }
 }
-
+function ClearLocalStorage(){
+    mdui.confirm("这会清空所有存档中的数据，确认吗？", function(){
+        localStorage.removeItem("CurrentSaveFileNum");
+        localStorage.removeItem("CurrentSaveFile_1");
+        localStorage.removeItem("CurrentSaveFile_2");
+        localStorage.removeItem("CurrentSaveFile_3");
+        location = "/";
+    });
+}
 function NewMetaData(){
     var date = (new Date()).toISOString();
     var s = "---\npermalink: /posts/new\ndisplay: normal\ntitle: \ntags: \nemotag: \ndate: " + date;

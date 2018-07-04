@@ -19,25 +19,38 @@ html {
 body {
     height: calc(100% - 70px);
 }
-.mdui-container > div {
+.full-container {
+    height: calc(100% - 40px);
+}
+.content-container {
     height: 100%;
 }
-.mdui-container {
+.full-container,
+.content-container {
     width: 100%;
     max-width: 100%;
-    height: 100%;
     margin: 0;
-    padding: 10px;
-    padding-top: 3em;
+    padding: 0px;
+}
+.toolbar-container {
+    background-color: grey;
+}
+.content-container > div {
+    height: 100%;
+}
+.markdown-editor {
+    overflow: scroll;
+    padding: 0 3.5em;
 }
 #raw-markdown {
     width: 100%;
-    height: 100%;
     font-size: 1.1em;
     resize: none;
     max-width: 768px;
     float: right;
     font-family: consolas;
+    border: 0;
+    padding: 0em 0em 0em 0em;
 }
 #raw-markdown:focus {
     outline: none;
@@ -45,7 +58,12 @@ body {
 .markdown-preview {
     overflow: scroll;
     max-width: 768px;
-    border: 1px solid #a7a7a7;
+    border: 0px;
+    background-color: #f3f3f3;
+    padding: 2em 3.5em 100px 3.5em;
+}
+.toc {
+    padding-top: 2em;
 }
 .toc-list {
     padding-left: 18px;
@@ -62,16 +80,26 @@ body {
 }
 </style>
 
-<div class="mdui-container">
-    <div class="mdui-col-md-5 markdown-editor">
-        <textarea id="raw-markdown"></textArea>
+<div class="mdui-container full-container">
+    <div class="toolbar-container">
+        <button onclick="changeSaveFile(1)">存档1</button>
+        <button onclick="changeSaveFile(2)">存档2</button>
+        <button onclick="changeSaveFile(3)">存档3</button>
     </div>
-    <div class="mdui-col-md-5 markdown-preview"></div>
-    <div class="mdui-col-md-2 toc"></div>
+    <div class="mdui-container content-container">
+        <div class="mdui-col-md-5 markdown-editor">
+            <textarea id="raw-markdown"></textArea>
+        </div>
+        <div class="mdui-col-md-5 markdown-preview"></div>
+        <div class="mdui-col-md-2">
+            <div class="toc"></div>
+        </div>
+    </div>
 </div>
 
 <script>
-var selector_left = "#raw-markdown";
+var selector_textarea = "#raw-markdown";
+var selector_left = ".markdown-editor";
 var selector_right = ".markdown-preview";
 var selector_toc = ".toc";
 function renderCode(){
@@ -103,7 +131,7 @@ function syncScroll(from, to){
         var toTop = elementTo.scrollTop;
         var containerHeight = $(".mdui-container").height();
         var scrollPercentage = fromTop / (fromHeight - containerHeight);
-        var scrollTo = scrollPercentage * (toHeight - containerHeight * 0.8);
+        var scrollTo = scrollPercentage * (toHeight - containerHeight * 1);
         $(to).scrollTop(scrollTo);
     });
 };
@@ -133,18 +161,40 @@ function createToc(){
         isCollapsedClass: 'is-collapsed-', //disable collapse
     });
 };
+function get_rawValue(){return $(selector_textarea)[0].value;}
+function set_rawValue(text){$(selector_textarea)[0].value = text;}
+function textareaScrollHeight(){
+    var scrollHeight = $(selector_textarea)[0].scrollHeight;
+    var minHeight = $(".markdown-editor").height() - 40;
+    if(scrollHeight < minHeight) scrollHeight = minHeight;
+    $(selector_textarea).height(scrollHeight);//?
+};
+var CurrentSaveFileNum = localStorage.getItem("CurrentSaveFileNum") || 1;
+function changeSaveFile(num){
+    CurrentSaveFileNum = num;
+    localStorage.setItem("CurrentSaveFileNum", num);
+    set_rawValue(getCurrentSaveFile());
+    render();
+};
+function getCurrentSaveFile(){
+    return localStorage.getItem("CurrentSaveFile_" + CurrentSaveFileNum);
+};
+function setCurrentSaveFile(text){
+    localStorage.setItem("CurrentSaveFile_" + CurrentSaveFileNum, text);
+};
 function render(){
-    var raw = $(selector_left)[0].value;
+    var raw = get_rawValue();
     renderMarkdown(raw, selector_right);
     openInNew(selector_right);
     createToc();
+    textareaScrollHeight();
     syncScroll(selector_left, selector_right);
 };
 $(function(){
-    $(selector_left)[0].value = localStorage.getItem("md");
+    set_rawValue(getCurrentSaveFile());
     render();
     $(selector_left).bind('input propertychange', function() {
-        localStorage.setItem("md", $(selector_left)[0].value);
+        setCurrentSaveFile(get_rawValue());
         render();
     });
     textarea_handle_special_keydown();

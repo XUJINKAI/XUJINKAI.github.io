@@ -107,9 +107,11 @@ function search(){
 
   </script>
 </head>
-{% if page.path contains '_posts' %}
+{% if page.path contains '_posts/' %}
 {% assign filename = page.path | remove_first : "_posts/" | remove: ".md" %}
 {% assign admin_url = "/admin/#/collections/post/entries/" | append: filename %}
+{% elsif page.url == "/create" %}
+{% assign admin_url = "/admin/#/collections/post/new" %}
 {% else %}
 {% assign admin_url = "/admin" %}
 {% endif %}

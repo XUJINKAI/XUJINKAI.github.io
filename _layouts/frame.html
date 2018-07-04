@@ -7,7 +7,7 @@
   <link rel="shortcut icon" type="image/x-ico" href="/favicon.ico"/>
   <link rel="canonical" href="{{site.domain}}{{page.url}}">
   <meta name="author" content="{{site.author}}" />
-  <title>{{ page.title }} - XUJINKAI</title>
+  <title>{{ page.title }} - {{site.title}}</title>
   {% assign this_components = 'mdui jquery' | split: ' ' %}
   {% assign layout_components = layout.component  | split: ' ' | compact %}
   {% assign page_components = page.component | split: ' ' | compact %}
@@ -101,7 +101,7 @@ $(function(){
 function search(){
   var text = $("#search-input")[0].value;
   if(text!=""){
-    window.open("https://google.com/search?q=site:xujinkai.net "+text);
+    window.open("https://google.com/search?q=site:{{site.hostname}} "+text);
   }
 };
 
@@ -130,7 +130,7 @@ function search(){
         <i class="mdui-icon material-icons">menu</i>
       </span>
       <a href="/" class="mdui-typo-title mdui-hidden-xs">
-        <span class="mdui-typo-title">XUJINKAI</span>
+        <span class="mdui-typo-title">{{site.description}}</span>
       </a>
       <div class="mdui-toolbar-spacer"></div>
       <a href="/create" class="mdui-typo-title mdui-hidden-xs">
@@ -141,9 +141,9 @@ function search(){
       </a>
       <div id="search-box" class="mdui-typo-title">
 	      <i id="search-icon" class="mdui-icon material-icons">search</i>
-	      <input id="search-input" placeholder="XUJINKAI.net">
+	      <input id="search-input" placeholder="{{site.hostname | upcase}}">
       </div>
-      <a class="mdui-typo-title" href="https://github.com/XUJINKAI/XUJINKAI.github.io/blob/master/{{page.path}}" target="_blank">
+      <a class="mdui-typo-title" href="{{site.github-repo}}/blob/master/{{page.path}}" target="_blank">
          <svg version="1.1" x="0px" y="0px" viewBox="0 0 36 36" enable-background="new 0 0 36 36" xml:space="preserve" class="mdui-list-item-icon mdui-icon" style="width: 24px;height:24px;">
             <path fill-rule="evenodd" clip-rule="evenodd" fill="#fff" d="M18,1.4C9,1.4,1.7,8.7,1.7,17.7c0,7.2,4.7,13.3,11.1,15.5
             c0.8,0.1,1.1-0.4,1.1-0.8c0-0.4,0-1.4,0-2.8c-4.5,1-5.5-2.2-5.5-2.2c-0.7-1.9-1.8-2.4-1.8-2.4c-1.5-1,0.1-1,0.1-1

@@ -92,9 +92,16 @@ $(function(){
 });
 </script>
 
+{% if page.comment %}
 <a href="#comment" class="mdui-btn" style="margin-left: 15px; margin-top: 20px; text-decoration: underline;">
-  ↓前往评论 <span class="disqus-comment-count" data-disqus-identifier="{{page.url}}"></span>
+  ↓前往评论 
+  {% if site.disqus %}
+  <span class="disqus-comment-count" data-disqus-identifier="{{page.url}}"></span>
+  {% endif %}
 </a>
-<script id="dsq-count-scr" src="//xujinkai.disqus.com/count.js" async></script>
+{% if site.disqus %}
+<script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js" async></script>
+{% endif %}
+{% endif %}
 
 </div>

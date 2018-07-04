@@ -27,7 +27,9 @@ sidebar: bio
 <div id="recent-posts">
 {% assign sticky_posts = site.posts | where: "display","sticky" %}
 {% for post in sticky_posts %}
-	<p class="sticky-header"><a href="{{post.url}}"><span class="sticky-text">📌</span> {{post.title}}</a></p>
+	<p class="sticky-header">
+		<a href="{{post.url}}"><span class="sticky-text">📌{{ post.emotag }}</span> {{post.title}}</a>
+	</p>
 {% endfor %}
 {% assign count = 0 %}
 {% for post in site.posts %}

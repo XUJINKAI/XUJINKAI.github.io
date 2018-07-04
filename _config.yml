@@ -1,7 +1,13 @@
 title: XUJINKAI
 author: XUJINKAI
-description: XUJINKAI个人主页
+description: XUJINKAI 的个人主页
+hostname: xujinkai.net
 domain: https://xujinkai.net
+github-repo: https://github.com/XUJINKAI/XUJINKAI.github.io
+
+# MUST change or delete these value
+ga: UA-52509591-2
+disqus: xujinkai
 
 # Conversion
 markdown: kramdown

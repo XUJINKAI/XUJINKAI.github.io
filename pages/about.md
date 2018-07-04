@@ -20,4 +20,4 @@ component: markdown
 
 [RSS](/feed.xml), [Sitemap](/sitemap.xml)
 
-[本博客用到的技术](/posts/this-blog-2.0)
+[本博客网站介绍](/posts/this-blog-2.0)

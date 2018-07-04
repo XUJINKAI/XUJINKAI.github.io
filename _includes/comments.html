@@ -1,3 +1,4 @@
+{% if site.disqus %}
 <div id="comment" style="min-height: 500px;">
 	<div id="disqus_thread">评论加载中。。。</div>
 </div>
@@ -15,9 +16,10 @@ this.page.identifier = "{{page.url}}"; // Replace PAGE_IDENTIFIER with your page
 
 (function() { // DON'T EDIT BELOW THIS LINE
 var d = document, s = d.createElement('script');
-s.src = 'https://xujinkai.disqus.com/embed.js';
+s.src = 'https://{{site.disqus}}.disqus.com/embed.js';
 s.setAttribute('data-timestamp', +new Date());
 (d.head || d.body).appendChild(s);
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{% endif %}

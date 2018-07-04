@@ -60,7 +60,9 @@ ul.list-unstyled#posts-archive-list{
           <span>{{ post.title }}</span>
         </a>
         <span class="emoji-tag">{{ post.emotag }}</span>
+        {% if site.disqus %}
         <span class="disqus-comment-count" data-disqus-identifier="{{post.url}}"></span>
+        {% endif %}
       </li>
     {% capture year %} {{ post.date | date: '%Y' }} {% endcapture %}
     {% capture nyear %} {{ post.previous.date | date: '%Y' }} {% endcapture %}
@@ -68,4 +70,6 @@ ul.list-unstyled#posts-archive-list{
     {% endif %}
   {% endfor %} 
 </ul>
-<script id="dsq-count-scr" src="//xujinkai.disqus.com/count.js" async></script>
+{% if site.disqus %}
+<script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js" async></script>
+{% endif %}

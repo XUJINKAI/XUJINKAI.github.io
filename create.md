@@ -1,9 +1,9 @@
 ---
 layout: frame
-title: 主页
+title: Markdown Editor
 component: markdown katex
 sidebar: 
-drawer-close: true
+drawer-close: 
 ---
 <script src="/static/editor/kramed.min.js"></script>
 <script src="/static/highlight/highlight.min.js"></script>
@@ -42,7 +42,8 @@ body {
     overflow: scroll;
     padding: 0 3.5em;
 }
-#raw-markdown {
+.markdown-input,
+.markdown-input-test {
     width: 100%;
     font-size: 1.1em;
     resize: none;
@@ -51,9 +52,14 @@ body {
     font-family: consolas;
     border: 0;
     padding: 0em 0em 0em 0em;
+    overflow: hidden;
 }
-#raw-markdown:focus {
+.markdown-input:focus {
     outline: none;
+}
+.markdown-input-test {
+    z-index: -1;
+    height: 0;
 }
 .markdown-preview {
     overflow: scroll;
@@ -78,17 +84,25 @@ body {
 .toc-list li {
     padding: 8px 0px 0px 0.8em
 }
+.savefile-button.active {
+    font-weight: bolder;
+    text-decoration: underline;
+}
 </style>
 
 <div class="mdui-container full-container">
     <div class="toolbar-container">
-        <button onclick="changeSaveFile(1)">存档1</button>
-        <button onclick="changeSaveFile(2)">存档2</button>
-        <button onclick="changeSaveFile(3)">存档3</button>
+        <button onclick="changeSaveFile(1)" class="savefile-button" data="1">存档1</button>
+        <button onclick="changeSaveFile(2)" class="savefile-button" data="2">存档2</button>
+        <button onclick="changeSaveFile(3)" class="savefile-button" data="3">存档3</button>
+        <button onclick="InsertMetaData()">Insert MetaData</button>
+        <button onclick="DownloadFile()">Dwonload</button>
+        <span>字数：</span><span class="markdown-length"></span>
     </div>
     <div class="mdui-container content-container">
         <div class="mdui-col-md-5 markdown-editor">
-            <textarea id="raw-markdown"></textArea>
+            <textarea class="markdown-input" id="raw-markdown"></textArea>
+            <textarea class="markdown-input-test"></textArea>
         </div>
         <div class="mdui-col-md-5 markdown-preview"></div>
         <div class="mdui-col-md-2">
@@ -98,10 +112,59 @@ body {
 </div>
 
 <script>
-var selector_textarea = "#raw-markdown";
+var regex_jekyll_format = /^---(.*?)---(.*)$/s;
+var selector_input = ".markdown-input";
+var selector_input_test = ".markdown-input-test";
 var selector_left = ".markdown-editor";
 var selector_right = ".markdown-preview";
 var selector_toc = ".toc";
+var CurrentSaveFileNum = localStorage.getItem("CurrentSaveFileNum");
+if(CurrentSaveFileNum === null){
+    CurrentSaveFileNum = 1;
+    var content = getCurrentSaveFile();
+    if(content === null){
+        var url = "https://raw.githubusercontent.com/XUJINKAI/XUJINKAI.github.io/master/_posts/2018-07-03-本博客网站介绍.md";
+        $.get(url, function(data){
+            if(getCurrentSaveFile() === null){
+                set_rawValue(data);
+                render();
+            }
+        });
+    }
+}
+
+function NewMetaData(){
+    var date = (new Date()).toISOString();
+    var s = "---\npermalink: /posts/new\ndisplay: normal\ntitle: \ntags: \nemotag: \ndate: " + date;
+    s += "\ncomment: true\nlayout: post\ncomponent: katex\n---\n";
+    return s;
+};
+function InsertMetaData(){
+    var text = NewMetaData() + get_rawValue();
+    set_rawValue(text);
+    setCurrentSaveFile(text);
+};
+function download(data, filename, type) {
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+};
+function DownloadFile(){
+    var date = (new Date()).toISOString().substr(0, 10) + "-";
+    download(get_rawValue(), date + ".md", "markdown");
+};
 function renderCode(){
     $('pre code').each(function(i, block) {
         hljs.highlightBlock(block);
@@ -122,18 +185,16 @@ function renderMarkdown(text, selector_to){
     renderTeX();
 };
 function syncScroll(from, to){
-    $(from).scroll(function() {
-        var elementFrom = $(from)[0];
-        var elementTo = $(to)[0];
-        var fromHeight = elementFrom.scrollHeight;
-        var fromTop = elementFrom.scrollTop;
-        var toHeight = elementTo.scrollHeight;
-        var toTop = elementTo.scrollTop;
-        var containerHeight = $(".mdui-container").height();
-        var scrollPercentage = fromTop / (fromHeight - containerHeight);
-        var scrollTo = scrollPercentage * (toHeight - containerHeight * 1);
-        $(to).scrollTop(scrollTo);
-    });
+    var elementFrom = $(from)[0];
+    var elementTo = $(to)[0];
+    var fromHeight = elementFrom.scrollHeight;
+    var fromTop = elementFrom.scrollTop;
+    var toHeight = elementTo.scrollHeight;
+    var toTop = elementTo.scrollTop;
+    var containerHeight = $(".mdui-container").height();
+    var scrollPercentage = fromTop / (fromHeight - containerHeight);
+    var scrollTo = scrollPercentage * (toHeight - containerHeight * 1);
+    $(to).scrollTop(scrollTo);
 };
 function textarea_handle_special_keydown(){
     $("textarea").keydown(function(e) {
@@ -161,29 +222,41 @@ function createToc(){
         isCollapsedClass: 'is-collapsed-', //disable collapse
     });
 };
-function get_rawValue(){return $(selector_textarea)[0].value;}
-function set_rawValue(text){$(selector_textarea)[0].value = text;}
+function get_rawValue(){return $(selector_input)[0].value;}
+function set_rawValue(text){$(selector_input)[0].value = text;}
 function textareaScrollHeight(){
-    var scrollHeight = $(selector_textarea)[0].scrollHeight;
+    $(selector_input_test)[0].value = $(selector_input)[0].value;
+    var scrollHeight = $(selector_input_test)[0].scrollHeight + 120;
     var minHeight = $(".markdown-editor").height() - 40;
     if(scrollHeight < minHeight) scrollHeight = minHeight;
-    $(selector_textarea).height(scrollHeight);//?
+    $(selector_input).height(scrollHeight);
 };
-var CurrentSaveFileNum = localStorage.getItem("CurrentSaveFileNum") || 1;
 function changeSaveFile(num){
     CurrentSaveFileNum = num;
     localStorage.setItem("CurrentSaveFileNum", num);
     set_rawValue(getCurrentSaveFile());
     render();
+    activeSavefileButton();
 };
+function activeSavefileButton(){
+    $(".savefile-button").removeClass("active");
+    $(".savefile-button[data="+CurrentSaveFileNum+"]").addClass("active");
+}
 function getCurrentSaveFile(){
     return localStorage.getItem("CurrentSaveFile_" + CurrentSaveFileNum);
 };
 function setCurrentSaveFile(text){
     localStorage.setItem("CurrentSaveFile_" + CurrentSaveFileNum, text);
 };
+function set_markdownLength(length){
+    $(".markdown-length").text(length);
+};
 function render(){
     var raw = get_rawValue();
+    set_markdownLength(raw.length);
+    if(regex_jekyll_format.test(raw)){
+        raw = regex_jekyll_format.exec(raw)[2];
+    }
     renderMarkdown(raw, selector_right);
     openInNew(selector_right);
     createToc();
@@ -191,6 +264,7 @@ function render(){
     syncScroll(selector_left, selector_right);
 };
 $(function(){
+    activeSavefileButton();
     set_rawValue(getCurrentSaveFile());
     render();
     $(selector_left).bind('input propertychange', function() {

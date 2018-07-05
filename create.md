@@ -45,7 +45,8 @@ body {
 .markdown-input,
 .markdown-input-test {
     width: 100%;
-    font-size: 1.1em;
+    font-size: 1.05em;
+    line-height: 1.6em;
     resize: none;
     max-width: 768px;
     float: right;
@@ -175,25 +176,6 @@ function DownloadFile(){
     var date = (new Date()).toISOString().substr(0, 10) + "-";
     download(get_rawValue(), date + ".md", "markdown");
 };
-function renderCode(){
-    $('pre code').each(function(i, block) {
-        hljs.highlightBlock(block);
-    });
-};
-function renderTeX(){
-    var tex_list = $(".markdown-body tex");
-    for (var i = 0; i < tex_list.length; i++) {
-        var tex = tex_list[i];
-        katex.render(tex.innerText, tex);
-    }
-};
-function renderMarkdown(text, selector_to){
-    var html = kramed(text);
-    html = "<div class='markdown-body'>"+html+"</div>";
-    $(selector_to).html(html);
-    renderCode();
-    renderTeX();
-};
 function syncScroll(from, to){
     var elementFrom = $(from)[0];
     var elementTo = $(to)[0];
@@ -214,12 +196,6 @@ function textarea_handle_special_keydown(){
         }
     });
 };
-function openInNew(selector){
-    $(selector + " a").click(function(e){
-        window.open($(this).attr("href"));
-        e.preventDefault();
-    })
-};
 function createToc(){
     tocbot.init({
         // Where to render the table of contents.
@@ -236,7 +212,7 @@ function get_rawValue(){return $(selector_input)[0].value;}
 function set_rawValue(text){$(selector_input)[0].value = text;}
 function textareaScrollHeight(){
     $(selector_input_test)[0].value = $(selector_input)[0].value;
-    var scrollHeight = $(selector_input_test)[0].scrollHeight + 120;
+    var scrollHeight = $(selector_input_test)[0].scrollHeight + 80;
     var minHeight = $(".markdown-editor").height() - 40;
     if(scrollHeight < minHeight) scrollHeight = minHeight;
     $(selector_input).height(scrollHeight);
@@ -262,13 +238,34 @@ function set_markdownLength(length){
     $(".markdown-length").text(length);
 };
 function render(){
+    var metadata = "";
     var raw = get_rawValue();
     set_markdownLength(raw.length);
     if(regex_jekyll_format.test(raw)){
-        raw = regex_jekyll_format.exec(raw)[2];
+        var regResult = regex_jekyll_format.exec(raw);
+        metadata = regResult[1];
+        raw = regResult[2];
     }
-    renderMarkdown(raw, selector_right);
-    openInNew(selector_right);
+    // markdown
+    var html = kramed(raw);
+    html = "<pre style='line-height: 1.5em;'>"+metadata+"</pre>" + "<div class='markdown-body'>"+html+"</div>";
+    $(selector_right).html(html);
+    // code highlight
+    $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
+    // tex
+    var tex_list = $(".markdown-body tex");
+    for (var i = 0; i < tex_list.length; i++) {
+        var tex = tex_list[i];
+        katex.render(tex.innerText, tex);
+    }
+    // link in new tab
+    $(selector_right + " a").click(function(e){
+        window.open($(this).attr("href"));
+        e.preventDefault();
+    })
+    //
     createToc();
     textareaScrollHeight();
     syncScroll(selector_left, selector_right);

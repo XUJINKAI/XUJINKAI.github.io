@@ -34,7 +34,7 @@ ul.list-unstyled#posts-archive-list{
     font-size: .8em;
   }
   .post-date {
-    margin-right: 1em;
+    margin-right: 0;
   }
   .display-icon {
     display: inline-block;
@@ -43,6 +43,18 @@ ul.list-unstyled#posts-archive-list{
   }
   .emoji-tag {
     font-size: .8em;
+    min-width: 1.5em;
+    white-space: nowrap;
+    display: inline-block;
+    text-align: right;
+  }
+  @media(max-width: 1024px) {
+    .emoji-tag {
+        display: inline;
+    }
+  }
+  .post-title {
+    background-color: white;
   }
 </style>
 
@@ -56,10 +68,10 @@ ul.list-unstyled#posts-archive-list{
           {% endif %}
         </span>
         <span class="mobile-hidden post-date">{{ post.date | date:"%Y-%m-%d" }}</span>
-        <a href="{{ post.url }}">
+        <span class="emoji-tag">{{ post.emotag }}</span>
+        <a href="{{ post.url }}" class="post-title">
           <span>{{ post.title }}</span>
         </a>
-        <span class="emoji-tag">{{ post.emotag }}</span>
         {% if site.disqus %}
         <span class="disqus-comment-count" data-disqus-identifier="{{post.url}}"></span>
         {% endif %}

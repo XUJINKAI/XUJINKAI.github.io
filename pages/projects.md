@@ -3,7 +3,7 @@ permalink: /projects
 layout: index
 title: 个人项目
 comment: false
-component: markdown
+component: markdown anchor
 ---
 
 ## [OneQuick - 热键工具](http://onequick.org/)

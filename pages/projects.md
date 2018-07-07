@@ -3,6 +3,7 @@ permalink: /projects
 layout: index
 title: 个人项目
 comment: false
+sidebar: toc fixed
 component: markdown anchor
 ---
 

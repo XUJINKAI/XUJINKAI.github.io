@@ -1,69 +1,35 @@
-<style type="text/css">
-.next-previous span,
-.next-previous a{
-    width: calc(100%-1em);
-    height: 4em;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    text-transform: none;
-    line-height: normal;
-    vertical-align: middle;
-}
-</style>
-
-<div id="toc-sidebar-div">
-
-<div class="next-previous">
-    {%if page.next%}
-    <a href="{{page.next.url}}" class="mdui-btn mdui-btn-raised mdui-center mdui-valign mdui-color-grey-50">
-      新: {{page.next.title}}
-    </a>
-    {% else %}
-    <span class="mdui-btn mdui-center mdui-valign mdui-ripple">最新</span>
-    {%endif%}
-    <br>
-    {%if page.previous%}
-    <a href="{{page.previous.url}}" class="mdui-btn mdui-btn-raised mdui-center mdui-valign mdui-color-grey-50">
-      旧: {{page.previous.title}}
-    </a>
-    {% else %}
-    <span class="mdui-btn mdui-center mdui-valign">无</span>
-    {%endif%}
-</div>
-
 <style>
 @media (max-width: 1023px){
   #scrollToTop {
     display: none !important;
   }
 }
-</style>
-<a id="scrollToTop" href="javascript:window.scrollTo(0,0);" class="mdui-btn" style="margin-left: 15px; margin-top: 20px; text-decoration: underline;">↑返回顶部</a>
+.top-bottom-btn {
+  margin-left: 0;
+  margin-top: 10px;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bolder;
+}
 
-<!-- https://tscanlin.github.io/tocbot/#api -->
-<link rel="stylesheet" href="/static/tocbot/tocbot.css">
-<style>
 #toc .is-active-link {
   font-weight: normal;
 }
 @media (min-width: 1024px){
-  #toc-sidebar-div {
-    position: fixed;
-  }
   #toc .is-active-link {
     font-weight: 700;
     color: #03a9f4;
   }
 }
 #toc {
-    padding-top: 20px;
+  
 }
 #toc ul,
 #toc ol {
   list-style: none;
 }
 #toc li {
-    padding: 8px 0px 0px 1.4em
+    padding: 8px 0px 0px .6em;
 }
 #toc a {
     text-decoration: none;
@@ -75,15 +41,33 @@
   margin-bottom: 4px;
 }
 </style>
-<div id="toc"></div>
+<link rel="stylesheet" href="/static/tocbot/tocbot.css">
 <script src="/static/tocbot/tocbot.min.js"></script>
+
+<div id="toc-sidebar-div">
+  <a id="scrollToTop" href="javascript:window.scrollTo(0,0);" class="mdui-btn top-bottom-btn">↑返回顶部</a>
+
+  <!-- https://tscanlin.github.io/tocbot/#api -->
+  <div id="toc"></div>
+
+  {% if page.comment %}
+    <a href="#comment" class="mdui-btn top-bottom-btn">
+      ↓前往评论
+      {% if site.disqus %}
+      <span class="disqus-comment-count" data-disqus-identifier="{{page.url}}"></span>
+      <script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js" async></script>
+      {% endif %}
+    </a>
+  {% endif %}
+</div>
+
 <script>
 $(function(){
   tocbot.init({
     // Where to render the table of contents.
     tocSelector: '#toc',
     // Where to grab the headings to build the table of contents.
-    contentSelector: '#toc-content',
+    contentSelector: '.toc-body',
     // Which headings to grab inside of the contentSelector element.
     headingSelector: 'h1, h2, h3',
     scrollSmoothDuration: 200,
@@ -91,17 +75,3 @@ $(function(){
   });
 });
 </script>
-
-{% if page.comment %}
-<a href="#comment" class="mdui-btn" style="margin-left: 15px; margin-top: 20px; text-decoration: underline;">
-  ↓前往评论 
-  {% if site.disqus %}
-  <span class="disqus-comment-count" data-disqus-identifier="{{page.url}}"></span>
-  {% endif %}
-</a>
-{% if site.disqus %}
-<script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js" async></script>
-{% endif %}
-{% endif %}
-
-</div>

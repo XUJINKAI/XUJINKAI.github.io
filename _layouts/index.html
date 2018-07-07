@@ -2,7 +2,29 @@
 layout: frame
 ---
 
+{% assign sidebar_infile = layout.sidebar | append: ' ' | append: page.sidebar | split: ' ' | compact %}
+{% assign sidebars = sidebar_infile[1] %}
+{% for item in sidebar_infile %}
+  {% if item == "fixed" %}
+    {% assign fixed = true %}
+  {% endif %}
+  {% unless sidebars contains item %}
+    {% capture sidebars %}{{ sidebars }} {{ item }}{% endcapture %}
+  {% endunless %}
+{% endfor %}
+{% assign sidebars = sidebars | split: ' ' %}
+
 <style>
+{% if fixed %}
+.sidebar {
+  margin-bottom: 0em;
+}
+@media (min-width: 1024px){
+  .sidebar {
+    position: fixed;
+  }
+}
+{% endif %}
 @media (min-width: 1024px){
   .main-container > .mdui-col-md-3,
   .main-container > .mdui-col-md-1 {
@@ -16,19 +38,27 @@ layout: frame
 
 <div class="mdui-container main-container">
   <div class="mdui-col-md-3">
-      {% if page.sidebar == 'bio' or layout.sidebar == 'bio' %}
-      {% include bio.html %}
-      {% endif %}
-      {% if page.sidebar == 'toc' or layout.sidebar == 'toc' %}
-      {% include toc.html %}
-      {% endif %}
-      {% if page.sidebar == 'tags' or layout.sidebar == 'tags' %}
-      {% include tags.html %}
-      {% endif %}
+    <div class="sidebar">
+      {% for sidebar in sidebars %}
+        {% if sidebar == 'bio' %}
+        {% include bio.html %}
+        {% endif %}
+        {% if sidebar == 'nextprev' %}
+        {% include nextprev.html %}
+        {% endif %}
+        {% if sidebar == 'toc' %}
+        {% include toc.html %}
+        {% endif %}
+        {% if sidebar == 'tags' %}
+        {% include tags.html %}
+        {% endif %}
+        <br>
+      {% endfor %}
+    </div>
   </div>
   <div class="mdui-col-md-1"></div>
   <div class="mdui-col-md-8">
-    <div class="main-content markdown-body anchor-body">
+    <div class="main-content markdown-body anchor-body toc-body">
       {{ content }}
       {%if page.comment %}
       <hr style="height: 1px; width: 100%;">

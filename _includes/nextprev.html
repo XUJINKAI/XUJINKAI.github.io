@@ -1,0 +1,35 @@
+<style type="text/css">
+.next-previous span,
+.next-previous a {
+    height: 4em;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-transform: none;
+    line-height: normal;
+    vertical-align: middle;
+    font-family: serif;
+    padding-left: 0;
+}
+.next-previous span {
+    padding-left: 2em;
+}
+</style>
+
+
+<div class="next-previous">
+    {%if page.next%}
+    <a href="{{page.next.url}}" class="mdui-btn mdui-btn-raised mdui-center mdui-valign mdui-color-grey-50">
+      新: {{page.next.title}}
+    </a>
+    {% else %}
+    <span class="mdui-btn mdui-center mdui-valign mdui-ripple">最新</span>
+    {%endif%}
+    <br>
+    {%if page.previous%}
+    <a href="{{page.previous.url}}" class="mdui-btn mdui-btn-raised mdui-center mdui-valign mdui-color-grey-50">
+      旧: {{page.previous.title}}
+    </a>
+    {% else %}
+    <span class="mdui-btn mdui-center mdui-valign mdui-ripple">无</span>
+    {%endif%}
+</div>

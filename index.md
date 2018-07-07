@@ -11,11 +11,7 @@ sidebar: bio
 .markdown-body a {
 	font-weight: 400;
 }
-.markdown-body p.sticky-header {
-	font-size: 2em;
-	margin-top: 32px
-}
-.sticky-text {
+.sticky-symbol {
 	font-size: 16px;
 }
 .emotag {
@@ -27,9 +23,10 @@ sidebar: bio
 <div id="recent-posts">
 {% assign sticky_posts = site.posts | where: "display","sticky" %}
 {% for post in sticky_posts %}
-	<p class="sticky-header">
-		<a href="{{post.url}}"><span class="sticky-text">📌{{ post.emotag }}</span> {{post.title}}</a>
-	</p>
+	<h1 class="sticky-header">
+		<a href="{{post.url}}"><span class="sticky-symbol">📌{{ post.emotag }}</span> {{post.title}}</a>
+	</h1>
+	<p>{{post.excerpt | strip_html | truncate: 70}}</p>
 {% endfor %}
 {% assign count = 0 %}
 {% for post in site.posts %}

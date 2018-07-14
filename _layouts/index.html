@@ -27,18 +27,21 @@ layout: frame
   }
 }
 {% endif %}
+.main-container {
+  width: 100%;
+  margin: 0;
+  padding-top: 2em;
+  padding-left: .5em;
+  padding-right: .5em;
+}
 @media (min-width: 1024px){
   .main-container > .mdui-col-md-3,
   .main-container > .mdui-col-md-1 {
     float: right;
   }
-}
-.main-container {
-  width: 100%;
-  margin: 0;
-  padding-top: 2em;
-  padding-left: 3em;
-  padding-right: 0;
+  .main-container {
+    padding-left: 3em;
+  }
 }
 </style>
 

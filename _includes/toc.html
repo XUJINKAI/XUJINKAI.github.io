@@ -51,7 +51,7 @@
   <div id="toc"></div>
 
   {% if page.comment %}
-    <a href="#comment" class="mdui-btn top-bottom-btn">
+    <a id="scrollToComment" href="#comment" class="mdui-btn top-bottom-btn">
       ↓前往评论
       {% if site.disqus %}
       <span class="disqus-comment-count" data-disqus-identifier="{{page.url}}"></span>
@@ -63,15 +63,18 @@
 
 <script>
 $(function(){
+  TocRender('.toc-body', '#toc');
+});
+function TocRender(body, target){
   tocbot.init({
     // Where to render the table of contents.
-    tocSelector: '#toc',
+    tocSelector: target,
     // Where to grab the headings to build the table of contents.
-    contentSelector: '.toc-body',
+    contentSelector: body,
     // Which headings to grab inside of the contentSelector element.
     headingSelector: 'h1, h2, h3',
     scrollSmoothDuration: 200,
     isCollapsedClass: 'is-collapsed-', //disable collapse
   });
-});
+}
 </script>

@@ -2,15 +2,10 @@
 layout: frame
 title: Markdown Editor
 component: markdown katex
-sidebar: 
 drawer-close: 
 ---
 <script src="/static/editor/kramed.min.js"></script>
-<script src="/static/highlight/highlight.min.js"></script>
-<link href="/static/highlight/monokai-sublime.css" rel="stylesheet" type="text/css"/>
-<!-- <link href="/static/render/rouge-monokai.css" rel="stylesheet" type="text/css"/> -->
-<link rel="stylesheet" href="/static/tocbot/tocbot.css">
-<script src="/static/tocbot/tocbot.min.js"></script>
+{% include syntax-highlighter.html %}
 
 <style>
 html {
@@ -69,21 +64,18 @@ body {
     background-color: #f3f3f3;
     padding: 2em 3.5em 100px 3.5em;
 }
-.toc {
+#scrollToTop,
+#scrollToComment {
+    display: none !important;
+}
+#toc {
     padding-top: 2em;
 }
-.toc-list {
-    padding-left: 18px;
-}
-.toc-list .is-active-link {
-    font-weight: normal;
-}
-.toc-link::before,
-.is-active-link::before {
-    background-color: #fff;
-}
-.toc-list li {
-    padding: 8px 0px 0px 0.8em
+#toc .is-active-link,
+#toc .toc-link::before,
+#toc .is-active-link::before {
+    font-weight: normal !important;
+    color: black !important;
 }
 .savefile-button.active {
     font-weight: bolder;
@@ -108,7 +100,7 @@ body {
         </div>
         <div class="mdui-col-md-5 markdown-preview"></div>
         <div class="mdui-col-md-2">
-            <div class="toc"></div>
+{% include toc.html %}
         </div>
     </div>
 </div>
@@ -119,7 +111,7 @@ var selector_input = ".markdown-input";
 var selector_input_test = ".markdown-input-test";
 var selector_left = ".markdown-editor";
 var selector_right = ".markdown-preview";
-var selector_toc = ".toc";
+var selector_toc = "#toc";
 var CurrentSaveFileNum = localStorage.getItem("CurrentSaveFileNum");
 if(CurrentSaveFileNum === null){
     CurrentSaveFileNum = 1;
@@ -196,18 +188,6 @@ function textarea_handle_special_keydown(){
         }
     });
 };
-function createToc(){
-    tocbot.init({
-        // Where to render the table of contents.
-        tocSelector: selector_toc,
-        // Where to grab the headings to build the table of contents.
-        contentSelector: selector_right,
-        // Which headings to grab inside of the contentSelector element.
-        headingSelector: 'h1, h2, h3',
-        scrollSmoothDuration: 200,
-        isCollapsedClass: 'is-collapsed-', //disable collapse
-    });
-};
 function get_rawValue(){return $(selector_input)[0].value;}
 function set_rawValue(text){$(selector_input)[0].value = text;}
 function textareaScrollHeight(){
@@ -251,9 +231,7 @@ function render(){
     html = "<pre style='line-height: 1.5em;'>"+metadata+"</pre>" + "<div class='markdown-body'>"+html+"</div>";
     $(selector_right).html(html);
     // code highlight
-    $('pre code').each(function(i, block) {
-        hljs.highlightBlock(block);
-    });
+    syntax_highlighter('pre code');
     // tex
     var tex_list = $(".markdown-body tex");
     for (var i = 0; i < tex_list.length; i++) {
@@ -266,7 +244,7 @@ function render(){
         e.preventDefault();
     })
     //
-    createToc();
+    TocRender(selector_right, selector_toc);
     textareaScrollHeight();
     syncScroll(selector_left, selector_right);
 };

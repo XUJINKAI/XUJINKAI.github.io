@@ -11,9 +11,10 @@ disqus: xujinkai
 
 # Conversion
 markdown: kramdown
-highlighter: rouge
 kramdown:
   syntax_highlighter: rouge
+  syntax_highlighter_opts:
+      disable : true
 encoding: utf-8
 excerpt_separator: <!--more-->
 exclude: ["*.lnk", "*.bat", "README.md"]

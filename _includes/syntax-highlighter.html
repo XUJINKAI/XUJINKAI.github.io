@@ -1,0 +1,41 @@
+{% assign syntax_highlighter = "highlight" %}
+{% if site.kramdown.syntax_highlighter == "rouge" %}
+{% if !site.kramdown.syntax_highlighter_opts.disable %}
+{% assign syntax_highlighter = "rouge" %}
+{% endif %}
+{% endif %}
+{% if layout.syntax_highlighter %}
+{% assign syntax_highlighter = layout.syntax_highlighter %}
+{% endif %}
+{% if page.syntax_highlighter %}
+{% assign syntax_highlighter = page.syntax_highlighter %}
+{% endif %}
+
+{% if syntax_highlighter == "highlight" %}
+<script src="/static/highlight/highlight.all.pack.js"></script>
+<link href="/static/highlight/monokai-sublime.css" rel="stylesheet" type="text/css"/>
+<script>
+hljs.initHighlightingOnLoad();
+function syntax_highlighter(selector){
+    $(selector).each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
+}
+</script>
+{% endif %}
+
+{% if syntax_highlighter == "prism" %}
+<script src="/static/prism/prism.js"></script>
+<link href="/static/prism/prism-monokai.css" rel="stylesheet" type="text/css"/>
+<script>
+function syntax_highlighter(selector){
+    $(selector).each(function(i, block) {
+        Prism.highlightElement(block);
+    });
+}
+</script>
+{% endif %}
+
+{% if syntax_highlighter == "rouge" %}
+<link href="/static/render/rouge-monokai.css" rel="stylesheet"/>
+{% endif %}

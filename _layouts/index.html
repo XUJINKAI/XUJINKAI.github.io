@@ -34,12 +34,16 @@ layout: frame
   }
 }
 .main-container {
-  margin-top: 2em;
+  width: 100%;
+  margin: 0;
+  padding-top: 2em;
+  padding-left: 3em;
+  padding-right: 0;
 }
 </style>
 
 <div class="mdui-container main-container">
-  <div class="mdui-col-md-3">
+  <div class="mdui-col-md-3 sidebar-container">
     <div class="sidebar">
       {% for sidebar in sidebars %}
         {% if sidebar == 'bio' %}
@@ -69,3 +73,14 @@ layout: frame
     </div>
   </div>
 </div>
+<script>
+function syncWidth(){
+  $(".sidebar").width($(".sidebar-container").width());
+}
+$(function(){
+  syncWidth();
+  $(window).on('resize', function() {
+    syncWidth();
+  });
+})
+</script>

@@ -25,22 +25,29 @@ component: markdown anchor
 <!-- Title -->
 <p id="title"><a href="{{page.url}}">{{ page.title }}</a></p>
 <div class="post-date" style="color: gray;">
-	<span>{{ page.date | date:"%Y-%m-%d" }}</span>
+	<span>{{ page.date | date:"%Y-%m-%d" }} {{ page.emotag }}</span>
 </div>
 <i>
 Tags: {% for tag in page.tags %}{% if tag != "" %}
 <a class="tag" href>{{tag}}</a>
 {% if forloop.index != page.tags.size %}, {% endif %}{% endif %}{% endfor %}
-<script>
-var tag_list = $("a.tag");
-for (var i = tag_list.length - 1; i >= 0; i--) {
-    var tag = tag_list[i];
-    tag.href = "/posts/?tag=" + encodeURIComponent(tag.innerText);
-}
-</script>
 </i>
 <br>
 <br>
 <div class="post-content" style="padding-bottom: 1px;">
 {{ content }}
 </div>
+<script>
+var tag_list = $("a.tag");
+for (var i = tag_list.length - 1; i >= 0; i--) {
+    var tag = tag_list[i];
+    tag.href = "/posts/?tag=" + encodeURIComponent(tag.innerText);
+}
+$(".post-content a").click(function(e){
+	var link = $(this).attr("href");
+	if(link.startsWith('http://') || link.startsWith('https://')) {
+		window.open(link);
+		e.preventDefault();
+	}
+})
+</script>

@@ -15,7 +15,7 @@ Windows热键辅助工具，简化操作，提高效率。
 
 强烈推荐，已上架微软应用商店👍
 
-<img src="https://onequick.org/img/gif/screen-volume.gif" style="height: 150px;">
+<img src="https://onequick.org/img/feature/screen-volume.gif" style="height: 150px;">
 
 
 ## [XJK.Net 库](https://github.com/XUJINKAI/XJKdotNetLibrary)

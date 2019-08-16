@@ -35,7 +35,7 @@ GitHub Pages哪儿都好，就是没有后台管理（因为是静态博客嘛�
 
 - 进入应用后，Custom Domain输入你主页的域名，他会提示你DNS配置有问题（因为你用的是Github的DNS），不用管他。（这步必须有，不然你从你主页还登陆不了）
 
-- 去[Github OAuth页面](https://github.com/settings/developers)，新建一个app，获取Client ID和Secret。再到Netlify/Settings/Access Control/OAuth，把ID和Secret填进去。
+- 去[Github OAuth页面](https://github.com/settings/developers)，新建一个app，callback网址填<https://api.netlify.com/auth/done>，其他随便。获取Client ID和Secret。再到Netlify/Settings/Access Control/OAuth，把ID和Secret填进去。
 
 基本配置的步骤就是这样，我还做了一些额外的事情，所以如果你完成上述步骤后遇到了坑，接着往下看。
 

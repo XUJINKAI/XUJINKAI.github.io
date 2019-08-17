@@ -14,6 +14,8 @@ component: markdown anchor
 
 - [编程工具](/tools/program)
 
+    - [.Net相关](/tools/program/dotnet/)
+
 ## 日常
 
 Chrome [https://www.google.com/chrome/](https://www.google.com/chrome/)
@@ -40,7 +42,7 @@ Listary [http://www.listary.com/](http://www.listary.com/)
 
 Office 365 <https://stores.office.com/myaccount/home.aspx>
 
-PDF Reader <https://get.adobe.com/cn/reader/]>
+PDF Reader <https://get.adobe.com/cn/reader/>
 
 ## 社交
 

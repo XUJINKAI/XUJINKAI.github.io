@@ -25,11 +25,6 @@ Windows热键辅助工具，简化操作，提高效率。
 主要是.net standard项目，这样WPF和UWP项目都可导入。
 
 
-## [编程通识 (电子书)](https://program.gitbook.io/index/)
-
-【项目刚起步】从宏观把握编程
-
-
 # 脚本
 
 ## [Aria2-with-webui (docker)](https://hub.docker.com/r/xujinkai/aria2-with-webui/)

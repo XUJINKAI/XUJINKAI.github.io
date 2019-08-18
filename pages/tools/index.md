@@ -8,17 +8,17 @@ layout: index
 component: markdown anchor
 ---
 
-# 常用工具软件
+# 常用工具
 
 子目录：
 
-- [编程工具](/tools/program)
+- [开发工具](/tools/program)
 
     - [.Net相关](/tools/program/dotnet/)
 
 ## 日常
 
-Chrome [https://www.google.com/chrome/](https://www.google.com/chrome/)
+Chrome <https://www.google.com/chrome/>
 
 > 以默认用户启动 --profile-directory=Default
 >
@@ -26,19 +26,25 @@ Chrome [https://www.google.com/chrome/](https://www.google.com/chrome/)
 >
 > 离线包下载地址 <https://www.google.com/chrome/?standalone=1>
 
-WinRAR [https://www.rarlab.com/download.htm](https://www.rarlab.com/download.htm)
+Edge(Chromium) <https://www.microsoftedgeinsider.com/en-us/>
 
-Potplayer [https://potplayer.daum.net/](https://potplayer.daum.net/)
+WinRAR <https://www.rarlab.com/download.htm>
+
+Potplayer <https://potplayer.daum.net/>
 
 ## 小工具
 
-OneQuick 热键工具 [微软商店](https://www.microsoft.com/store/apps/9pfn5k6qxt46) 官网 [https://onequick.org/](https://onequick.org/)
+OneQuick 热键工具 <https://onequick.org/>, [微软商店](https://www.microsoft.com/store/apps/9pfn5k6qxt46)
 
-Snipaste 截图 [微软商店](https://www.microsoft.com/store/apps/9p1wxpkb68kx) [https://www.snipaste.com/](https://www.snipaste.com/)
+Snipaste 截图工具 <https://www.snipaste.com/>, [微软商店](https://www.microsoft.com/store/apps/9p1wxpkb68kx)
 
-Listary [http://www.listary.com/](http://www.listary.com/)
+Listary <http://www.listary.com/>
 
 ## 文档
+
+微软必应词典 (Win10) <https://www.microsoft.com/zh-cn/p/%e5%be%ae%e8%bd%af%e5%bf%85%e5%ba%94%e8%af%8d%e5%85%b8-win10/9nblggh63sw0>
+
+OneNote <https://www.microsoft.com/zh-cn/p/onenote/9wzdncrfhvjl>
 
 Office 365 <https://stores.office.com/myaccount/home.aspx>
 
@@ -48,7 +54,7 @@ PDF Reader <https://get.adobe.com/cn/reader/>
 
 微信 <https://pc.weixin.qq.com/>
 
-QQ\(商店\) [https://www.microsoft.com/zh-cn/p/qq/9wzdncrfj1ps](https://www.microsoft.com/zh-cn/p/qq/9wzdncrfj1ps)
+QQ\(UWP\) <https://www.microsoft.com/zh-cn/p/qq/9wzdncrfj1ps>
 
 
 # 改造系统

@@ -57,37 +57,47 @@ PDF Reader <https://get.adobe.com/cn/reader/>
 QQ\(UWP\) <https://www.microsoft.com/zh-cn/p/qq/9wzdncrfj1ps>
 
 
-# 改造系统
-
-## 在右键菜单添加“使用cmd打开”
-
-按住shift还会显示"打开cmd(管理员权限)"
+# 改造右键菜单
 
 ```reg
+
 Windows Registry Editor Version 5.00
 
+
+; Open Command Window Here 在右键菜单添加“使用cmd打开”
+
 [HKEY_CLASSES_ROOT\Directory\Background\shell\RunCmd]
-@="Open CMD here"
+@="@shell32.dll,-8506"
+"Icon"="C:\\Windows\\System32\\cmd.exe"
 
 [HKEY_CLASSES_ROOT\Directory\Background\shell\RunCmd\command]
 @="cmd.exe /s /k pushd \"%V\""
 
 
+; Open Command Window Here (Administrator) 在shift右键菜单添加“使用cmd打开(Admin)”
+
 [HKEY_CLASSES_ROOT\Directory\Background\shell\runas]
-@="Open CMD here (as Admin)"
-"Extended"=""
+@="Open Command Window Here (Administrator)"
+"Icon"="C:\\Windows\\System32\\cmd.exe"
 "HasLUAShield"=""
+"Extended"=""
 
 [HKEY_CLASSES_ROOT\Directory\Background\shell\runas\command]
 @="cmd.exe /s /k pushd \"%V\""
-```
 
-## 删除右键菜单中的“使用Visual Studio打开”
 
-```reg
-Windows Registry Editor Version 5.00
+; Hide open visual studio command 隐藏右键菜单中的“使用Visual Studio打开”
 
-[-HKEY_CLASSES_ROOT\Directory\Background\shell\AnyCode]
+[HKEY_CLASSES_ROOT\Directory\Background\shell\AnyCode]
+"HideBasedOnVelocityId"=dword:00639bc8
 
-[-HKEY_CLASSES_ROOT\Directory\shell\AnyCode]
+
+; Hide git command 隐藏右键菜单中的git命令
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\git_gui]
+"HideBasedOnVelocityId"=dword:00639bc8
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\git_shell]
+"HideBasedOnVelocityId"=dword:00639bc8
+
 ```

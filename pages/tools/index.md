@@ -20,11 +20,7 @@ component: markdown anchor
 
 Chrome <https://www.google.com/chrome/>
 
-> 以默认用户启动 --profile-directory=Default
->
-> 以其他用户启动 --profile-directory="Profile 2"
->
-> 离线包下载地址 <https://www.google.com/chrome/?standalone=1>
+> [关于Chrome的更多信息](/tools/chrome/)
 
 Edge(Chromium) <https://www.microsoftedgeinsider.com/en-us/>
 

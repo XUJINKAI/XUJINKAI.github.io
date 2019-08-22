@@ -48,7 +48,7 @@ component: markdown anchor
 
 [Wappalyzer](https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg) 查看网站用到的技术
 
-[Octotree](https://chrome.google.com/webstore/detail/octotree-pro/fjcahddnekkgihjnjnimgiggdmlgcnbc) GitHub文件导航侧边栏
+[Octotree](https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc) GitHub文件导航侧边栏
 
 [GitHub Release Downloads](https://chrome.google.com/webstore/detail/github-release-downloads/ncgomhdgmkicjeclohgokhciihpfdlhi) GitHub Release页面显示下载量
 

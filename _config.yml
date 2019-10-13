@@ -17,7 +17,7 @@ kramdown:
       disable : true
 encoding: utf-8
 excerpt_separator: <!--more-->
-exclude: ["*.lnk", "*.bat", "README.md"]
+exclude: ["*.lnk", "*.bat", "README.md", ".shellcommand.yaml"]
 
 # Outputting
 # DO NOT use date as url AND change timezone,

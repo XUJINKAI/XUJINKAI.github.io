@@ -8,17 +8,7 @@ layout: index
 component: markdown anchor
 ---
 
-# Chrome 相关
-
-下载: <https://www.google.com/chrome/>
-
-离线包： <https://www.google.com/chrome/?standalone=1>
-
-## 启动
-
-以默认用户启动 `--profile-directory=Default`
-
-以其他用户启动 `--profile-directory="Profile 2"`
+# Chromium扩展
 
 ## 常用插件
 
@@ -69,3 +59,15 @@ component: markdown anchor
 [Google 翻译](https://chrome.google.com/webstore/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb)
 
 [Search by Image](https://chrome.google.com/webstore/detail/search-by-image-by-google/dajedkncpodkggklbegccjpmnglmnflm)
+
+---
+
+## Chrome浏览器
+
+下载: <https://www.google.com/chrome/>
+
+离线包： <https://www.google.com/chrome/?standalone=1>
+
+以默认用户启动 `--profile-directory=Default`
+
+以其他用户启动 `--profile-directory="Profile 2"`

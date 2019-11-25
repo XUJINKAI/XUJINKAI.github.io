@@ -26,13 +26,15 @@ WinRAR <https://www.rarlab.com/download.htm>
 
 Potplayer <https://potplayer.daum.net/>
 
-## 小工具
+## 效率
 
 OneQuick 热键工具 <https://onequick.org/>, [微软商店](https://www.microsoft.com/store/apps/9pfn5k6qxt46)
 
 ShellCommand 自定义右键菜单 [XUJINKAI/ShellCommand](https://github.com/XUJINKAI/ShellCommand)
 
 > 注册表右键菜单位置 `HKEY_CLASSES_ROOT\Directory`
+
+Enpass 密码管理 <https://www.enpass.io/>
 
 Snipaste 截图工具 <https://www.snipaste.com/>, [微软商店](https://www.microsoft.com/store/apps/9p1wxpkb68kx)
 

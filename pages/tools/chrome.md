@@ -24,7 +24,7 @@ component: markdown anchor
 
 [CLEAN crxMouse Gestures](https://chrome.google.com/webstore/detail/clean-crxmouse-gestures/mjidkpedjlfnanainpdfnedkdlacidla) 鼠标手势
 
-[Web Activities](https://chrome.google.com/webstore/detail/web-activities/eiipeonhflhoiacfbniealbdjoeoglid) Win10时间线支持
+> [我的设置](/uploads/chrome.crxMouse.Gestures.json)
 
 [后台常驻](https://chrome.google.com/webstore/detail/%E5%90%8E%E5%8F%B0%E5%B8%B8%E9%A9%BB/mhbibamplfmiaglgnombmmlmcpbocfag)
 
@@ -36,9 +36,9 @@ component: markdown anchor
 
 ## 开发相关插件
 
-[Wappalyzer](https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg) 查看网站用到的技术
-
 [Octotree](https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc) GitHub文件导航侧边栏
+
+[Wappalyzer](https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg) 查看网站用到的技术
 
 [GitHub Release Downloads](https://chrome.google.com/webstore/detail/github-release-downloads/ncgomhdgmkicjeclohgokhciihpfdlhi) GitHub Release页面显示下载量
 

@@ -18,8 +18,6 @@ Windows Terminal <https://www.microsoft.com/zh-cn/p/windows-terminal-preview/9n0
 
 VS Code <https://code.visualstudio.com/>
 
-Sublime Text 3 <https://www.sublimetext.com/>
-
 ## Git
 
 Sourcetree <https://www.sourcetreeapp.com/>

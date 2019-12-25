@@ -28,17 +28,15 @@ Potplayer <https://potplayer.daum.net/>
 
 ## 效率
 
-OneQuick 热键工具 <https://onequick.org/>, [微软商店](https://www.microsoft.com/store/apps/9pfn5k6qxt46)
+OneQuick 热键工具 <https://onequick.org/>, <a href="https://www.microsoft.com/zh-cn/p/onequick/9pfn5k6qxt46?activetab=pivot:overviewtab" target="_blank">微软商店链接</a>
 
 ShellCommand 自定义右键菜单 [XUJINKAI/ShellCommand](https://github.com/XUJINKAI/ShellCommand)
 
-> 注册表右键菜单位置 `HKEY_CLASSES_ROOT\Directory`
+> 注：注册表右键菜单位置 `HKEY_CLASSES_ROOT\Directory`
 
 Enpass 密码管理 <https://www.enpass.io/>
 
-Snipaste 截图工具 <https://www.snipaste.com/>, [微软商店](https://www.microsoft.com/store/apps/9p1wxpkb68kx)
-
-Listary <http://www.listary.com/>
+Snipaste 截图工具 <https://www.snipaste.com/>
 
 ## 文档
 
@@ -55,3 +53,9 @@ PDF Reader <https://get.adobe.com/cn/reader/>
 微信 <https://pc.weixin.qq.com/>
 
 QQ(UWP) <https://www.microsoft.com/zh-cn/p/qq/9wzdncrfj1ps>
+
+## 系统
+
+Enable AppContainer Loopback <https://www.telerik.com/fiddler/add-ons>
+
+> Fiddler独立组件，用于让UWP应用使用系统代理

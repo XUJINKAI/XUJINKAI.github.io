@@ -1,5 +1,5 @@
 ---
-permalink: /tools/android
+permalink: /tools/android/
 title: 安卓应用
 comment: true
 drawer-close: false

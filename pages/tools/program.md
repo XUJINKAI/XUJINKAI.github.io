@@ -10,31 +10,31 @@ component: markdown anchor
 
 # 编程环境
 
-Ubuntu <https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6>
+[WSL Ubuntu](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6)
 
-Windows Terminal <https://www.microsoft.com/zh-cn/p/windows-terminal-preview/9n0dx20hk701>
+[Windows Terminal](https://www.microsoft.com/zh-cn/p/windows-terminal-preview/9n0dx20hk701)
 
 ## Editor
 
-VS Code <https://code.visualstudio.com/>
+[VS Code](https://code.visualstudio.com/)
 
 ## Git
 
-Sourcetree <https://www.sourcetreeapp.com/>
+[Sourcetree](https://www.sourcetreeapp.com/)
 
-Git <https://git-scm.com/>
+[Git](https://git-scm.com/)
 
-LFS <https://git-lfs.github.com/>
+[LFS](https://git-lfs.github.com/)
 
 ## Server
 
-MobaXterm <https://mobaxterm.mobatek.net/download.html>
+[MobaXterm](https://mobaxterm.mobatek.net/download.html)
 
 ## Github Pages
 
-Ruby <https://rubyinstaller.org/downloads/>
+[Ruby](https://rubyinstaller.org/downloads/)
 
-GitHub versions <https://pages.github.com/versions/>
+[GitHub versions](https://pages.github.com/versions/)
 
 ```text
 gem install bundler github-pages

@@ -5,7 +5,7 @@ tags: jekyll
 date: '2018-06-23 13:33:56 +08:00'
 comment: true
 layout: post
-emotag: 🔥
+emotag: 
 ---
 GitHub Pages哪儿都好，就是没有后台管理（因为是静态博客嘛），每次需要本地写markdown然后push，很是繁琐。
 

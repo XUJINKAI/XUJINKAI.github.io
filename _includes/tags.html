@@ -91,6 +91,7 @@ var toggle_tag = function(tag){
     var tagli = $("#tags-list li[data-tag='"+tag+"']");
     if(tagli.hasClass("tag-active")){
         posts_show_all();
+        $("#posts-archive-list br").removeClass("hide");
     }else{
       var li_list = $("#posts-archive-list li");
       for (var i = li_list.length - 1; i >= 0; i--) {
@@ -105,6 +106,7 @@ var toggle_tag = function(tag){
       setUrlTag(tag);
       clear_tags_active();
       $("#tags-list li[data-tag='"+tag+"']").addClass("tag-active");
+      $("#posts-archive-list br").addClass("hide");
     }
 };
 var posts_show_all = function(){

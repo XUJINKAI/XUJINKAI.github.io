@@ -56,6 +56,9 @@ ul.list-unstyled#posts-archive-list{
   .post-title {
     background-color: white;
   }
+  body{
+    overflow-y: scroll;
+  }
 </style>
 
 <ul class="list-unstyled" id="posts-archive-list">

@@ -160,7 +160,7 @@ function search(){
   <div id="main-drawer" class="mdui-drawer mdui-color-grey-50 mdui-drawer-full-height 
     {%if drawer == false %}mdui-drawer-close{%endif%}
   ">
-    <div class="mdui-list">
+    <div class="mdui-list" mdui-collapse="{accordion: true}">
       <a class="mdui-list-item mdui-ripple" href="/" style="margin-top: 65px;">
           <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
           <div class="mdui-list-item-content">主页</div>
@@ -171,10 +171,21 @@ function search(){
       </a>
       <li class="mdui-subheader">Collection</li>
 
-      <a class="mdui-list-item mdui-ripple" href="/tools/">
+      <div class="mdui-collapse-item" mdui-collapse-item-auto-open="/tools/">
+        <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
           <i class="mdui-list-item-icon mdui-icon material-icons">build</i>
-          <div class="mdui-list-item-content">常用工具</div>
-      </a>
+          <div class="mdui-list-item-content">工具总结</div>
+          <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+        </div>
+        <div class="mdui-collapse-item-body mdui-list">
+          <a class="mdui-list-item mdui-ripple" href="/tools/windows/">Windows 装机必备</a>
+          <a class="mdui-list-item mdui-ripple" href="/tools/chrome/">Chromium 扩展</a>
+          <a class="mdui-list-item mdui-ripple" href="/tools/android/">Android 应用</a>
+          <a class="mdui-list-item mdui-ripple" href="/tools/collaborate/">协作办公</a>
+          <a class="mdui-list-item mdui-ripple" href="/tools/program/">开发工具</a>
+          <a class="mdui-list-item mdui-ripple" href="/tools/dotnet/">.Net 相关</a>
+        </div>
+      </div>
 
       <li class="mdui-subheader">About</li>
       <a class="mdui-list-item mdui-ripple" href="/projects">
@@ -191,6 +202,16 @@ function search(){
       </a>
     </div>
   </div>
+  <script>
+let collapse_list = document.querySelectorAll("#main-drawer div.mdui-collapse-item");
+for (let index = 0; index < collapse_list.length; index++) {
+  const element = collapse_list[index];
+  if(location.pathname.startsWith(element.getAttribute("mdui-collapse-item-auto-open"))){
+    element.classList.add("mdui-collapse-item-open");
+    element.querySelector("#main-drawer a[href='"+location.pathname+"']").classList.add("mdui-list-item-active");
+  }
+}
+  </script>
 
 </style>
 

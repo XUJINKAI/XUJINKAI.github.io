@@ -1,6 +1,6 @@
 ---
 permalink: /tools/android/
-title: 安卓应用
+title: Android 应用
 comment: true
 drawer-close: false
 sidebar: toc fixed
@@ -8,7 +8,7 @@ layout: index
 component: markdown anchor
 ---
 
-# 安卓应用
+# Android 应用
 
 [Play商店](https://play.google.com/store/apps)
 

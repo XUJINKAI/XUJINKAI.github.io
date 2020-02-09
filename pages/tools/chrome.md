@@ -1,6 +1,6 @@
 ---
 permalink: /tools/chrome/
-title: Chrome 相关
+title: Chromium 扩展
 comment: true
 drawer-close: false
 sidebar: toc fixed
@@ -8,7 +8,7 @@ layout: index
 component: markdown anchor
 ---
 
-# Chromium扩展
+# Chromium 扩展
 
 ## 常用插件
 

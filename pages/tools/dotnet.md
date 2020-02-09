@@ -1,5 +1,5 @@
 ---
-permalink: /tools/program/dotnet/
+permalink: /tools/dotnet/
 title: .Net 相关
 comment: true
 drawer-close: false

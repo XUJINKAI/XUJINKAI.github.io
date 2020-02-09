@@ -1,6 +1,6 @@
 ---
-permalink: /tools/
-title: 常用工具
+permalink: /tools/windows/
+title: Windows 装机必备
 comment: true
 drawer-close: false
 sidebar: toc fixed
@@ -8,14 +8,7 @@ layout: index
 component: markdown anchor
 ---
 
-# 常用工具
-
-子目录：
-
-- [安卓应用](/tools/android/)
-- [Chromium扩展](/tools/chrome/)
-- [开发工具](/tools/program)
-  - [.Net相关](/tools/program/dotnet/)
+# Windows 装机必备
 
 ## 日常
 

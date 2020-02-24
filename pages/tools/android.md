@@ -38,6 +38,8 @@ component: markdown anchor
 
 中国银行 ([官网下载页](https://www.bankofchina.com/ebanking/service/cs1/201009/t20100921_1151946.html))
 
+招商银行 ([官网](http://m.cmbchina.com/))
+
 ## 不可描述
 
 [Shadowsocks](https://play.google.com/store/apps/details?id=com.github.shadowsocks)

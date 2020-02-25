@@ -60,11 +60,15 @@ Windows的客户端推荐社区版，简单易用 <https://openvpn.net/community
 
 ```bash
 ./easyrsa init-pki
-./easyrsa build-ca                  # 得到ca.crt和ca.key
-./easyrsa gen-req server
-./easyrsa sign-req server server    # 得到server.crt和server.key
-./easyrsa gen-req client
-./easyrsa sign-req client client    # 得到client.crt和client.key
+./easyrsa build-ca                              # 得到ca.crt和ca.key
+
+SERVER=server
+echo | ./easyrsa gen-req $SERVER nopass
+echo yes | ./easyrsa sign-req server $SERVER    # 得到server.crt和server.key
+
+CLIENT=client
+echo | ./easyrsa gen-req $CLIENT nopass
+echo yes | ./easyrsa sign-req client $CLIENT    # 得到client.crt和client.key
 ```
 
 另外，你还得生成dh文件和ta.key文件。
@@ -84,7 +88,7 @@ ca.key是要保管好的，这个丢了整个vpn就毫无安全可言了。
 
 - 编辑配置文件
 
-配置文件的样板可以从/usr/share/doc/packages/openvpn里拷，具体的配置就不说了，没几行也挺简单，注意有些配置服务端和客户端需要对应起来就行。
+配置文件的样板可以从`/usr/share/doc/packages/openvpn`里拷，具体的配置就不说了，没几行也挺简单。
 
 ## 启动OpenVPN
 
@@ -104,7 +108,9 @@ systemctl status openvpn-server@server.service
 
 假设你openvpn用的端口是9527，协议是udp，那么执行
 
-`./firewalledit.sh add 9527/udp`
+```bash
+./firewalledit.sh add 9527/udp
+```
 
 将对应端口放行。
 
@@ -150,14 +156,47 @@ systemctl status squid
 
 还要记得设置防火墙把squid的监听端口放行（假设监听12345端口）
 
-`./firewalledit.sh add 12345/tcp`
+```bash
+./firewalledit.sh add 12345/tcp
+```
 
 然后，在你的电脑上设置http代理，地址是vpn的内网地址，默认为10.8.0.1，端口是squid的端口（12345）。
 
 利用这个http代理，就可以访问内网其他机器的服务了。
 
-## 更多
+## Socks5代理
 
 http代理能力还是弱了些，于是我又弄了个ssserver，本地起一个ss（主要是为了他的socks5代理），然后又用proxifier实现了全局无缝切换。
 
 这里就不多说了，为了这一点体验的提升请自行折腾。
+
+## 吊销证书
+
+吊销证书需要生成一个crl.pem吊销列表，然后配置openvpn客户端读取这个文件。
+
+```bash
+#!/bin/bash
+
+if [ -z "$1" ]
+then
+    echo "ERROR: input revoke NAME."
+    exit 1
+fi
+
+cd /etc/openvpn/easyrsa
+
+echo yes | ./easyrsa revoke $1
+./easyrsa gen-crl
+
+cp ./pki/crl.pem ../server/crl.pem
+
+systemctl restart openvpn-server@server.service
+```
+
+将这个脚本保存为revoke.sh，假设你要吊销xujinkai的证书，那么执行以下命令：
+
+```bash
+./revoke.sh xujinkai
+```
+
+crl.pem会拷入/etc/openvpn/server文件夹，记得编辑server.conf添加一行`crl-verify crl.pem`，最后重启openvpn即可。

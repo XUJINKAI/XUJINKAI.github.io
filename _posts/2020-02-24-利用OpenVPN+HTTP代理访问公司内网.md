@@ -80,8 +80,8 @@ openvpn --genkey --secret ta.key    # 得到ta.key
 
 ca.key是要保管好的，这个丢了整个vpn就毫无安全可言了。
 
-服务端和客户端都要有的文件：ca.crt, dh.pen, ta.key  
-服务端还需要的：server.crt, server.key, server.conf  
+服务端和客户端都要有的文件：ca.crt, ta.key  
+服务端还需要的：server.crt, server.key, dh.pem, server.conf  
 客户端还需要的：client.crt, client.key, client.ovpn  
 
 把服务端需要的文件拷到/etc/openvpn/server文件夹中即可。

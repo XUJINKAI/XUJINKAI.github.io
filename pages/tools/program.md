@@ -26,6 +26,8 @@ component: markdown anchor
 
 [LFS](https://git-lfs.github.com/)
 
+[《git常用命令整理》](/posts/git-commands)
+
 ## Server
 
 [MobaXterm](https://mobaxterm.mobatek.net/download.html)

@@ -42,8 +42,10 @@ component: markdown anchor
 
 ## 不可描述
 
+[Clash for Android](https://play.google.com/store/apps/details?id=com.github.kr328.clash)
+
+[v2rayNG](https://play.google.com/store/apps/details?id=com.v2ray.ang)
+
 [Shadowsocks](https://play.google.com/store/apps/details?id=com.github.shadowsocks)
 
 SSRR ([Github下载页](https://github.com/shadowsocksrr/shadowsocksr-android/releases))
-
-[v2rayNG](https://play.google.com/store/apps/details?id=com.v2ray.ang)

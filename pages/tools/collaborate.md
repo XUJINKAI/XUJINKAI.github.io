@@ -15,7 +15,7 @@ component: markdown anchor
 
 Teams免费版支持300个用户，足够一般团队使用。
 
-其他方式可参考：[文档协作方案](/posts/collaborate-document-solution)
+其他方式可参考：[《文档协作方案》](/posts/collaborate-document-solution)
 
 ## 代码协作
 

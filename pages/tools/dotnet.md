@@ -18,7 +18,7 @@ component: markdown anchor
 
 ## [dotnet core](https://dotnet.microsoft.com/download)
 
-[如何生成单一exe文件](/posts/dotnet-publish-single-file)
+[《如何生成单一exe文件》](/posts/dotnet-publish-single-file)
 
 [dotnet-script](https://github.com/filipw/dotnet-script) 以脚本的方式运行dotnet，且支持REPL（写一句执行一句）
 

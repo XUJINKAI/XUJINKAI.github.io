@@ -21,7 +21,7 @@ Windows热键辅助工具，简化操作，提高效率。
 
 无需编辑注册表，通过配置文件动态生成，告别敲入命令行的苦恼。
 
-<img src="https://raw.githubusercontent.com/XUJINKAI/ShellCommand/develop/docs/preview.png" style="height: 220px;">
+<img src="https://raw.githubusercontent.com/XUJINKAI/ShellCommand/master/docs/screenshot.png" style="height: 220px;">
 
 ## [XJK.Net 库](https://github.com/XUJINKAI/XJKdotNetLibrary)
 

@@ -1,7 +1,7 @@
 # ShellCommand: https://github.com/XUJINKAI/ShellCommand 
 
-- Command: http://127.0.0.1
+- Command: http://127.0.0.1:4000
   Name: Browser
 
-- Command: jekyll s -H 0.0.0.0 -P 80
+- Command: wsl -- bundle exec jekyll serve -H 0.0.0.0 -P 4000 --trace --watch --config _config.yml
   Name: jekyll serve

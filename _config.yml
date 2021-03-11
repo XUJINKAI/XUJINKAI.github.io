@@ -5,6 +5,9 @@ hostname: xujinkai.net
 domain: https://xujinkai.net
 github-repo: https://github.com/XUJINKAI/XUJINKAI.github.io
 
+# github metadata
+repository: XUJINKAI/XUJINKAI.github.io
+
 # MUST change or delete these value
 ga: UA-52509591-2
 disqus: xujinkai
@@ -17,7 +20,12 @@ kramdown:
       disable : true
 encoding: utf-8
 excerpt_separator: <!--more-->
-exclude: ["*.lnk", "*.bat", "README.md", ".shellcommand.yaml"]
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - Makefile
+  - .shellcommand.yaml
 
 # Outputting
 # DO NOT use date as url AND change timezone,

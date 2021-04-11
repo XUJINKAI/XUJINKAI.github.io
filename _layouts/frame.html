@@ -107,6 +107,7 @@ function search(){
 };
 
   </script>
+  {% include ga4.html %}
 </head>
 {% if page.path contains '_posts/' %}
 {% assign filename = page.path | remove_first : "_posts/" | remove: ".md" %}

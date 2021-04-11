@@ -34,14 +34,15 @@ sidebar: bio
 	{% if post.display %}{% if post.display == "normal" %}{% assign show = true %}{% endif %}
 	{% else %}{% assign show = true %}
 	{% endif %}
-	{% if show == true %}
+	{% if show == false %}{% continue %}{% endif %}
+	{% assign show = false %}
 	{% assign count = count | plus: 1 %}
-	{% if count <= 5 %}
+	{% if count <= 10 %}{% assign show = true %}{% endif %}
+	{% if post.emotag %}{% assign show = true %}{% endif %}
+	{% if show == false %}{% continue %}{% endif %}
 	<h1><a href="{{post.url}}">{{post.title}}</a></h1>
 	<p>{{ post.date | date:"%Y-%m-%d" }}<span class="emotag">{{ post.emotag }}</span></p>
 	<p>{{post.excerpt | strip_html | truncate: 140}}</p>
-	{% endif %}
-	{% endif %}
 {% endfor %}
 
 <h2><a href="/posts" style="">>> 查看全部博文...</a></h2>

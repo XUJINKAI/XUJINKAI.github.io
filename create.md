@@ -139,7 +139,7 @@ function ClearLocalStorage(){
 function NewMetaData(){
     var date = (new Date()).toISOString();
     var s = "---\npermalink: /posts/new\ndisplay: normal\ntitle: \ntags: \nemotag: \ndate: " + date;
-    s += "\ncomment: true\nlayout: post\ncomponent: katex\n---\n";
+    s += "\nupdate: \ncomment: true\nlayout: post\ncomponent: katex\n---\n";
     return s;
 };
 function InsertMetaData(){

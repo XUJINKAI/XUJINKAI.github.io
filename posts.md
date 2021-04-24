@@ -59,6 +59,10 @@ ul.list-unstyled#posts-archive-list{
   body{
     overflow-y: scroll;
   }
+  .update-time {
+    font-size: small;
+    font-weight: 100;
+  }
 </style>
 
 <ul class="list-unstyled" id="posts-archive-list">
@@ -78,6 +82,7 @@ ul.list-unstyled#posts-archive-list{
         {% if site.disqus %}
         <span class="disqus-comment-count" data-disqus-identifier="{{post.url}}"></span>
         {% endif %}
+        {% if post.update %}<span class="update-time">更新于 {{ post.update | date:"%Y-%m-%d" }}</span>{% endif %}
       </li>
     {% capture year %} {{ post.date | date: '%Y' }} {% endcapture %}
     {% capture nyear %} {{ post.previous.date | date: '%Y' }} {% endcapture %}

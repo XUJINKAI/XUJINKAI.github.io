@@ -24,13 +24,15 @@ component: markdown anchor
 
 <!-- Title -->
 <p id="title"><a href="{{page.url}}">{{ page.title }}</a></p>
-<div class="post-date" style="color: gray;">
-	<span>{{ page.date | date:"%Y-%m-%d" }} {{ page.emotag }}</span>
-</div>
+<p class="post-date" style="color: gray;">
+	<span>{{ page.date | date:"%Y-%m-%d" }}</span>
+	{% if page.update %} , update {{ page.update | date:"%Y-%m-%d" }}{% endif %}
+</p>
 <i>
 Tags: {% for tag in page.tags %}{% if tag != "" %}
 <a class="tag" href>{{tag}}</a>
 {% if forloop.index != page.tags.size %}, {% endif %}{% endif %}{% endfor %}
+{{ page.emotag }}
 </i>
 <br>
 <br>

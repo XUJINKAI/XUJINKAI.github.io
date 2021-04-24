@@ -18,6 +18,14 @@ sidebar: bio
 	padding-left: 8px;
 	font-size: .8em;
 }
+.post-info {
+	margin-bottom: 10px !important;
+}
+.date-time {
+}
+.update-time {
+	text-decoration: underline;
+}
 </style>
 
 <div id="recent-posts">
@@ -41,7 +49,14 @@ sidebar: bio
 	{% if post.emotag %}{% assign show = true %}{% endif %}
 	{% if show == false %}{% continue %}{% endif %}
 	<h1><a href="{{post.url}}">{{post.title}}</a></h1>
-	<p>{{ post.date | date:"%Y-%m-%d" }}<span class="emotag">{{ post.emotag }}</span></p>
+	<p class="post-info">
+	{% if post.update %}
+	<span class="update-time" title="创建于 {{ post.date | date:"%Y-%m-%d" }}">{{ post.update | date:"%Y-%m-%d" }}</span>
+	{% else %}
+	<span class="date-time">{{ post.date | date:"%Y-%m-%d" }}</span>
+	{% endif %}
+	<span class="emotag">{{ post.emotag }}</span>
+	</p>
 	<p>{{post.excerpt | strip_html | truncate: 140}}</p>
 {% endfor %}
 

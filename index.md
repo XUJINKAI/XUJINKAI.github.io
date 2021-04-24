@@ -41,7 +41,7 @@ sidebar: bio
 	{% if post.emotag %}{% assign show = true %}{% endif %}
 	{% if show == false %}{% continue %}{% endif %}
 	<h1><a href="{{post.url}}">{{post.title}}</a></h1>
-	<p>{{ post.last_modified_at | date:"%Y-%m-%d" }}<span class="emotag">{{ post.emotag }}</span></p>
+	<p>{{ post.date | date:"%Y-%m-%d" }}<span class="emotag">{{ post.emotag }}</span></p>
 	<p>{{post.excerpt | strip_html | truncate: 140}}</p>
 {% endfor %}
 

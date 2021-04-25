@@ -2,7 +2,7 @@
 permalink: /posts/dotnet-publish-single-file
 display: normal
 title: dotnet生成单一exe文件
-tags: C# dotnet
+tags: C#
 emotag: 
 date: 2019-11-25T01:50:43.191Z
 comment: true

@@ -20,7 +20,9 @@ component: markdown
 
 [RSS](/feed.xml), [Sitemap](/sitemap.xml)
 
-[本博客网站介绍](/posts/this-blog-v2)
+[《本博客网站介绍》](/posts/this-blog-v2)
+
+[捐赠](/donate)
 
 ## Fork
 

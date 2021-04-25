@@ -97,7 +97,9 @@ var toggle_tag = function(tag){
       for (var i = li_list.length - 1; i >= 0; i--) {
         var li = li_list[i];
         var li_tags_str = $(li).attr("tags");
-        if(li_tags_str.indexOf(tag) >= 0){
+        var tags_arr = li_tags_str.split(" ");
+        var search = tags_arr.indexOf(tag);
+        if(search >= 0){
           $(li).removeClass("hide");
         } else {
           $(li).addClass("hide");

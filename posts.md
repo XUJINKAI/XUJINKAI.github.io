@@ -32,6 +32,7 @@ ul.list-unstyled#posts-archive-list{
   }
   #posts-archive-list li .disqus-comment-count{
     font-size: .8em;
+    color: gray;
   }
   .post-date {
     margin-right: 0;
@@ -62,6 +63,16 @@ ul.list-unstyled#posts-archive-list{
   .update-time {
     font-size: small;
     font-weight: 100;
+    color: gray;
+  }
+  .tag-info {
+    font-size: small;
+    font-weight: 100;
+    position: absolute;
+    right: 0;
+  }
+  .tag-info a {
+    color: gray;
   }
 </style>
 
@@ -79,10 +90,11 @@ ul.list-unstyled#posts-archive-list{
         <a href="{{ post.url }}" class="post-title">
           <span>{{ post.title }}</span>
         </a>
-        {% if site.disqus %}
-        <span class="disqus-comment-count" data-disqus-identifier="{{post.url}}"></span>
-        {% endif %}
         {% if post.update %}<span class="update-time">更新于 {{ post.update | date:"%Y-%m-%d" }}</span>{% endif %}
+        {% if site.disqus %}<span class="disqus-comment-count" data-disqus-identifier="{{post.url}}"></span>{% endif %}
+        <span class="tag-info mobile-hidden">{% for tag in post.tags %}{% if tag != "" %}
+        <a class="tag" href='javascript:toggle_tag("{{tag}}");'>{{tag}}</a>
+        {% if forloop.index != post.tags.size %}, {% endif %}{% endif %}{% endfor %}</span>
       </li>
     {% capture year %} {{ post.date | date: '%Y' }} {% endcapture %}
     {% capture nyear %} {{ post.previous.date | date: '%Y' }} {% endcapture %}

@@ -22,7 +22,7 @@ component: markdown anchor
 
 > 将未读完的网页一键保存，在启动页分组显示，并支持同步
 
-[CLEAN crxMouse Gestures](https://chrome.google.com/webstore/detail/clean-crxmouse-gestures/mjidkpedjlfnanainpdfnedkdlacidla) 鼠标手势
+[crxMouse Chrome](https://chrome.google.com/webstore/detail/crxmouse-chrome-gestures/jlgkpaicikihijadgifklkbpdajbkhjo) 鼠标手势
 
 > [我的设置](/uploads/chrome.crxMouse.Gestures.json)
 
